@@ -1,0 +1,15 @@
+<div class="app-aside-inner affix-top" bs-affix style="position: static;">
+  <div class="app-aside-body scrollable hover">
+    <nav>
+      <ul class="nav p-v-md">
+        <li ng-class="{'active': item.isActive}" ng-repeat="item in mainVm.asideArr">
+          <a href="javascript:;" class="" style="font-size: 14px" ng-click="mainVm.switchNavItem($index)">
+            <i class="icon glyphicon glyphicon-briefcase text-lt"></i>
+            <span class="font-normal">{{item.title}}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+<!-- glyphicon-font/glyphicon-edit -->

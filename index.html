@@ -1,10 +1,38 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Title</title>
+  <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/animate.css" />
+  <link rel="stylesheet" href="css/common.css">
+  <script src="lib/angular/angular.js"></script>
+  <script src="lib/angular-animate/angular-animate.js"></script>
+  <script src="lib/angular-resource/angular-resource.js"></script>
+  <script src="lib/angular-ui-router/angular-ui-router.js"></script>
+  <script src="lib/angular-strap/angular-strap.js"></script>
+  <script src="lib/angular-strap/angular-strap.tpl.js"></script>
+  <script src="ng/app.js"></script>
+  <script src="ng/main.js"></script>
 </head>
-<body>
+<body ng-controller="mainCtl as mainVm">
 
+<header id="header"
+        ng-include=" 'banner.html' "
+        class="app-header navbar bg-banner"
+        role="menu"
+></header>
+<aside id="aside"
+       class="app-aside hidden-xs bg-dark lt"
+       ng-include="'aside.html'"
+></aside>
+<div class="app app-header-fixed"
+     ui-view
+></div>
+<footer id="footer"
+        class="app-footer"
+        role="footer"
+        ng-include="'footer.html'"
+></footer>
 </body>
 </html>
