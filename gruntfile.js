@@ -72,6 +72,18 @@ module.exports = function(grunt) {
       fonts:{
         expand: true, src: ['./fonts/**'], dest: './build/'
       }
+    },
+
+    connect: {
+      server: {
+        options: {
+          protocol: 'http',
+          port: 9000,
+          hostname: '*',
+          keepalive: true,
+          base: ['build/']
+        }
+      }
     }
   });
   grunt.loadNpmTasks('grunt-bower-task');
@@ -79,5 +91,5 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.task.registerTask('default', ['bower','less'/*,'concat','cssmin'*/,'copy']);
+  grunt.task.registerTask('default', ['bower','less'/*,'concat','cssmin'*/,'copy', 'connect']);
 }
