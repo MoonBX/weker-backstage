@@ -20,6 +20,7 @@ function mainCtl($scope) {
     {title: '账号管理', subTitle:'Account Management', icon: '', path: '', isActive: false},
   ];
   mainVm.currentNav = {};
+  mainVm.asideCollapse = false;
 
   mainVm.switchNavItem = switchNavItem;
 
@@ -31,5 +32,4 @@ function mainCtl($scope) {
       mainVm.currentNav.isActive = true;
     }
   }
-
 }

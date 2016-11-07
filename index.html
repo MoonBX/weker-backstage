@@ -6,14 +6,18 @@
   <link rel="stylesheet" href="css/app.css" />
   <link rel="stylesheet" href="css/animate.css" />
   <link rel="stylesheet" href="css/common.css">
+  <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
   <script src="bower_components/angular-strap/dist/angular-strap.js"></script>
   <script src="bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
+  <script src="bower_components/angular-smart-table/dist/smart-table.js"></script>
   <script src="ng/app.js"></script>
   <script src="ng/main.js"></script>
+  <script src="ng/controller/customer.js"></script>
+  <script src="ng/directive/dropdown.js"></script>
 </head>
 <body ng-controller="mainCtl as mainVm">
 
@@ -25,6 +29,7 @@
 <aside id="aside"
        class="app-aside hidden-xs bg-dark lt"
        ng-include="'aside.html'"
+       ng-class="{'show animated fadeInLeft' : mainVm.asideCollapse}"
 ></aside>
 <div class="app app-header-fixed"
      ui-view

@@ -12297,8 +12297,8 @@ sup {
 }
 .btn-primary {
   color: #fff!important;
-  background-color: #155abb;
-  border-color: #155abb
+  background: #4cb2db;
+  border-color: #4cb2db;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -12310,8 +12310,8 @@ sup {
 .btn-primary.btn-stroke.active,
 .open .dropdown-toggle.btn-primary {
   color: #fff!important;
-  background-color: #124fa4!important;
-  border-color: #114896!important
+  background-color: #20a3da!important;
+  border-color: #20a3da!important;
 }
 .btn-primary.btn-addon>i {
   background-color: #124d9f;
@@ -13056,7 +13056,7 @@ a.list-group-item.hover {
 .navbar .navbar-header>button {
   padding: 0 14px;
   font-size: 16px;
-  line-height: 48px;
+  line-height: 60px;
   text-decoration: none;
   background-color: transparent;
   border: 0
