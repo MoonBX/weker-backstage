@@ -13,7 +13,7 @@
         <button class="btn btn-primary btn-sm">搜索</button>
       </div>
       <div class="col-md-2" style="padding-left: 0">
-        <button class="btn btn-primary btn-sm">新增用户</button>
+        <button class="btn btn-primary btn-sm" ng-click="customerVm.addUser()">新增用户</button>
       </div>
     </div>
     <div class="form-group">
@@ -37,7 +37,7 @@
   </form>
 </div>
 <div class="table-box p-v-sm">
-  <table class="table table-striped wk-table" st-table="customerVm.manageTable">
+  <table class="table table-striped wk-table" st-pipe="callServer" st-table="displayed">
     <thead>
     <th st-sort="order">序号</th>
     <th st-sort="name">客户姓名</th>
@@ -56,7 +56,7 @@
     <!--gjj j k j-->
     </thead>
     <tbody>
-    <tr ng-repeat="item in customerVm.manageTable">
+    <tr ng-repeat="item in displayed">
       <td>{{$index}}</td>
       <td>{{item.name}}</td>
       <td>{{item.phone}}</td>
@@ -74,7 +74,7 @@
     <tfoot>
     <tr>
       <td colspan="10" class="text-center">
-        <div st-pagination="" st-items-by-page="5" st-displayed-pages="5" class="no-margin"></div>
+        <div st-pagination="" st-items-by-page="tableState.pagination.number" st-displayed-pages="7" st-template="./views/customer/template.html"></div>
       </td>
     </tr>
     </tfoot>
@@ -82,6 +82,7 @@
   <style>
     .table-box table.wk-table thead{
       background: #7d9cd4;
+      /*background: #4cb2db;*/
     }
     .table-box table.wk-table thead th, .wk-table table thead td {
       color: #ffffff;

@@ -6,9 +6,11 @@
 
 angular.module('app', [
   'ui.router',
+  'ui.bootstrap',
   'smart-table',
   'mainMdl',
-  'customerMdl'
+  'customerMdl',
+  'customerApi'
 ]);
 
 angular.module('app')

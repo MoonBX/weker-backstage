@@ -2907,8 +2907,8 @@ fieldset[disabled] .btn-primary.active {
 }
 .btn-success {
   color: #fff;
-  background-color: #5cb85c;
-  border-color: #4cae4c
+  background-color: #5dce95;
+  border-color: #5dce95
 }
 .btn-success:hover,
 .btn-success:focus,
@@ -4405,8 +4405,8 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   z-index: 2;
   color: #fff;
   cursor: default;
-  background-color: #428bca;
-  border-color: #428bca
+  background-color: #4cb2db;
+  border-color: #4cb2db;
 }
 .pagination>.disabled>span,
 .pagination>.disabled>span:hover,
