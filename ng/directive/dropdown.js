@@ -8,10 +8,12 @@ function dropdown(){
   return{
     restrict: 'EA',
     scope:{
-      list: '='
+      list: '=',
+      myDirectiveVar: '='
     },
     template: '<div class="wk-dropdown" style="width: 100%;height: 30px;">' +
-    '<p id="subject">{{item}}<i></i></p><ul><li ng-repeat="item in list" ng-click="setItem(item)"><a href="javascript:;">{{item}}</a></li></ul></div>',
+      '<input type="text" ng-model="myDirectiveVar" class="hide">'+
+    '<p id="subject" >{{item}}<i></i></p><ul><li ng-repeat="item in list" ng-click="setItem(item)"><a href="javascript:;">{{item}}</a></li></ul></div>',
     controller: function($scope){
       $scope.item = $scope.list[0];
       $scope.setItem = function(item){

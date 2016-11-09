@@ -87,6 +87,9 @@ nav ul.nav li a {
   .col-md-5 {
     width: 40%;
   }
+  .col-md-11{
+    width: 90%
+  }
 }
 .wk-dropdown{
   position:relative;
@@ -168,4 +171,127 @@ nav ul.nav li a {
 }
 .wk-dropdown ul li a:hover{
   background-color: #F2F2F2;
+}
+/* 修改ui-select的默认样式 */
+.select2-container {
+  width:100%;
+}
+.select2-drop-active {
+  border: 1px solid #d6d8db;
+}
+.select2-drop {
+  margin-top: 0px;
+}
+.select2-container .select2-choice {
+  height: 30px;
+  line-height: 30px;
+  border-radius: 0;
+  border-color: #d6d8db;
+  background-image: none;
+}
+.select2-dropdown-open .select2-choice{
+  background: #ffffff;
+}
+.select2-container .select2-choice .select2-arrow {
+  background: #ffffff;
+  border-radius: 0;
+  border-left: none;
+  top: 1px;
+}
+.select2-search input {
+  margin-top: 10px;
+}
+.select2-results .select2-highlighted {
+  background: #4cb2db;
+  color: #fff;
+}
+.my-select{
+  width: 100%;
+  border: solid 1px #d6d8db;
+  border-radius: 1px;
+  height: 30px;
+  line-height: 23px;
+  color: #999;
+
+  appearance:none;
+  -moz-appearance:none;
+  -webkit-appearance:none;
+  padding: 3px 14px 3px 7px;
+
+  background-image: url("../img/select2x2.png") !important;
+  background-repeat: no-repeat !important;
+  background-color: #fff;
+  background-size: 19px 11px !important;
+  background-position: 102%;
+}
+.my-select::-ms-expand { display: none; }
+/*table*/
+.table-box table.wk-table thead{
+  background: #7d9cd4;
+  /*background: #4cb2db;*/
+}
+.table-box table.wk-table thead th, .wk-table table thead td {
+  color: #ffffff;
+}
+.wk-table.table-striped>tbody>tr:nth-child(odd)>td, .wk-table.table-striped>tbody>tr:nth-child(odd)>th {
+  background-color: #f0f6ff;
+}
+.wk-table.table>tbody>tr>td{
+  background-color: #e7effd;
+  vertical-align: middle;
+}
+
+.modal-content{
+  border-radius: 11px;
+}
+.cus-lb-temp-o{
+  width: 40%;
+  margin-right: 2%;
+}
+.cus-inp-temp-o{
+  width: 58%;
+}
+.cus-lb-temp-t{
+  width: 40%;
+  margin-right: 2%;
+}
+.cus-inp-temp-t{
+  width:49%;
+}
+.cus-lb-temp-th{
+  width: 16%;
+  margin-right: 1%;
+}
+.cus-inp-temp-th{
+  width: 78%;
+}
+.cus-lb-temp-f{
+  width: 16%;
+  margin-right: 1%;
+}
+.cus-inp-temp-f{
+  width: 45%;
+}
+.cus-lb-temp-fi{
+  width: 16%;
+  margin-right: 1%;
+}
+.cus-inp-temp-fi{
+  width: 13%;
+  margin-right: 3%;
+}
+.cm-tip{
+  position: absolute;
+  right: 0px;
+  top: 5px;
+}
+.content-head{
+  height: 36px;
+  background: #4cb2db;
+  border-radius: 10px 10px 0 0;
+  font-size: 14px;
+  line-height: 36px;
+  color: #fff;
+  padding-left: 12px;
+
 }

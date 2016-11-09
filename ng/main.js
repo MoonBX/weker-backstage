@@ -6,8 +6,8 @@
 angular.module('mainMdl', [])
   .controller('mainCtl', mainCtl);
 
-mainCtl.$inject = ['$scope'];
-function mainCtl($scope) {
+mainCtl.$inject = ['$scope', '$state'];
+function mainCtl($scope, $state) {
   var mainVm = this;
   mainVm.asideArr = [
     {title: '客户管理', subTitle:'Customer Management', icon: 'user', path: '', isActive: true},
@@ -26,6 +26,7 @@ function mainCtl($scope) {
 
   function switchNavItem(index){
     mainVm.currentNav = mainVm.asideArr[index];
+    console.log(mainVm.currentNav)
     for(var i=0;i<mainVm.asideArr.length;i++){
       if(index != i)
         mainVm.asideArr[i].isActive = false;

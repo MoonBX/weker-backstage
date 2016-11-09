@@ -7,6 +7,7 @@
 angular.module('app', [
   'ui.router',
   'ui.bootstrap',
+  'ui.select2',
   'smart-table',
   'mainMdl',
   'customerMdl',
@@ -14,7 +15,12 @@ angular.module('app', [
 ]);
 
 angular.module('app')
-  .config(config);
+  .config(config)
+  .run(initConfig);
+
+function initConfig(uiSelect2Config){
+    uiSelect2Config.minimumResultsForSearch = -1;
+}
 
 function config($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/customer/manage');

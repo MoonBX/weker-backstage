@@ -13,31 +13,43 @@
         <button class="btn btn-primary btn-sm">搜索</button>
       </div>
       <div class="col-md-2" style="padding-left: 0">
-        <button class="btn btn-primary btn-sm" ng-click="customerVm.addUser()">新增用户</button>
+        <button class="btn btn-primary btn-sm" ng-click="customerVm.openModal('addUser','customer.addCtrl as addVm')">新增用户</button>
       </div>
     </div>
     <div class="form-group">
       <label class="col-md-1 col-sm-4 control-label">客户类型:</label>
       <div class="col-md-2 col-sm-8">
-        <wk-dropdown list="customerVm.typeList"></wk-dropdown>
+        <select ui-select2 ng-model="type" data-placeholder="请选择类型">
+          <option value=""></option>
+          <option ng-value="item" ng-repeat="item in customerVm.infoList.type">{{item}}</option>
+        </select>
       </div>
       <label class="col-md-1 col-sm-4 control-label">客户渠道:</label>
       <div class="col-md-2 col-sm-8">
-        <wk-dropdown list="customerVm.channelList"></wk-dropdown>
+        <select ui-select2 ng-model="channel" data-placeholder="请选择渠道">
+          <option value=""></option>
+          <option ng-value="item" ng-repeat="item in customerVm.infoList.channel">{{item}}</option>
+        </select>
       </div>
       <label class="col-md-1 col-sm-4 control-label">购买产品:</label>
       <div class="col-md-2 col-sm-8">
-        <wk-dropdown list="customerVm.productList"></wk-dropdown>
+        <select ui-select2 ng-model="product" data-placeholder="请选择产品">
+          <option value=""></option>
+          <option ng-value="item" ng-repeat="item in customerVm.infoList.product">{{item}}</option>
+        </select>
       </div>
       <label class="col-md-1 col-sm-4 control-label" style="width: 7%">状态:</label>
       <div class="col-md-2 col-sm-8">
-        <wk-dropdown list="customerVm.stateList"></wk-dropdown>
+        <select ui-select2 ng-model="state" data-placeholder="请选择状态">
+          <option value=""></option>
+          <option ng-value="item" ng-repeat="item in customerVm.infoList.state">{{item}}</option>
+        </select>
       </div>
     </div>
   </form>
 </div>
 <div class="table-box p-v-sm">
-  <table class="table table-striped wk-table" st-pipe="callServer" st-table="displayed">
+  <table class="table table-striped wk-table" st-pipe="customerVm.callRandomItems" st-table="customerVm.displayed">
     <thead>
     <th st-sort="order">序号</th>
     <th st-sort="name">客户姓名</th>
@@ -80,19 +92,6 @@
     </tfoot>
   </table>
   <style>
-    .table-box table.wk-table thead{
-      background: #7d9cd4;
-      /*background: #4cb2db;*/
-    }
-    .table-box table.wk-table thead th, .wk-table table thead td {
-      color: #ffffff;
-    }
-    .wk-table.table-striped>tbody>tr:nth-child(odd)>td, .wk-table.table-striped>tbody>tr:nth-child(odd)>th {
-      background-color: #f0f6ff;
-    }
-    .wk-table.table>tbody>tr>td{
-      background-color: #e7effd;
-      vertical-align: middle;
-    }
+
   </style>
 </div>

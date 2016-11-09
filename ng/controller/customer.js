@@ -3,59 +3,102 @@
  */
 angular.module('customerMdl', [])
   .controller('customerCtrl', customerCtrl)
-  .controller('addUserCtrl', addUserCtrl)
+  .controller('customer.addCtrl', addCtrl)
+  .controller('customer.detailCtrl', detailCtrl)
 
 function customerCtrl($scope, $filter, $location, $modal, customerSrv){
-  var customerVm = this;
-  customerVm.group = [
-    { sref: 'customer.manage', title: '客户管理', isActive: true },
-    { sref: 'customer.verify', title: '客户审批', isActive: false }
+  var randomsItems = [
+    {name:'双方1', phone: '15757118222', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方2', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方3', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方4', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方5', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方6', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方7', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方8', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方9', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方10', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方11', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方12', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方13', phone: '15757118222', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方14', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方15', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方16', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方17', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方18', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方19', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方20', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方21', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方22', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
+    {name:'双方', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'}
   ];
-  customerVm.typeList = ['企业用户','个人用户', '内测用户'];
-  customerVm.channelList = ['淘宝', '代理', '招募活动'];
-  customerVm.productList = ['Weker W1', 'Weker W2', 'Weker T1', 'Weker T2'];
-  customerVm.stateList = ['待审批', '未通过审批', '通过审批', '未提交'];
-  customerVm.manageTable = [
+  var customerVm = this;
 
-  ]
   customerVm.switchTabNav = switchTabNav;
-  customerVm.addUser = addUser;
+  customerVm.openModal = openModal;
+  customerVm.callRandomItems = callRandomItems;
   customerVm.currentNav = {};
+  //smart-table配置变量
+  $scope.displayed = [];
+
+  setCustomerInfo();
+  // 客户管理: customer
+
+  function setCustomerInfo(){
+    customerVm.infoList = {
+      group: [
+        { sref: 'customer.manage', title: '客户管理', isActive: true },
+        { sref: 'customer.verify', title: '客户审批', isActive: false }
+      ],
+      type: ['企业用户','个人用户', '内测用户'],
+      channel: ['淘宝', '代理', '招募活动'],
+      product: ['Weker W1', 'Weker W2', 'Weker T1', 'Weker T2'],
+      state: ['待审批', '未通过审批', '通过审批', '未提交'],
+    }
+    return customerVm.infoList;
+  }
 
   function switchTabNav(index){
-    customerVm.currentNav = customerVm.group[index];
-    for(var i=0;i<customerVm.group.length;i++){
+    customerVm.currentNav = customerVm.infoList.group[index];
+    for(var i=0;i<customerVm.infoList.group.length;i++){
       if(index != i)
-        customerVm.group[i].isActive = false;
+        customerVm.infoList.group[i].isActive = false;
       customerVm.currentNav.isActive = true;
     }
   }
 
-  function addUser(){
+  function openModal(template, controller){
     $modal.open({
-      templateUrl: './views/customer/addUser.html',
-      controller: []
+      templateUrl: './views/customer/' + template + '.html',
+      controller: controller
     })
   }
 
-  //动态显示条数
-  $scope.itemsOptions = [5,10,20];
-  //smart-table配置变量
-  $scope.displayed = [];
-  $scope.callServer = function callServer(tableState) {
+  function callRandomItems(tableState) {
     $scope.tableState = tableState; //tableState对象中包含sort排序信息以及search搜索信息
-    $scope.getData(1);
-  };
-  $scope.getData = function(pageNo) {
+    getData(1, randomsItems);
+  }
+
+  function getData(pageNo, list) {
     console.log("getData exe");
     var pagination = $scope.tableState.pagination;
     var start = (pageNo-1)*10 || 0;     //从第几条数据开始查询，默认0条
     var number = pagination.number || 10;   //每页显示条数
-    console.log(number);
     pagination.currentPage = pagination.inputCurPage = pageNo;
     $scope.isLoading = true;    //控制数据加载状态
     //数据获取函数
-    customerSrv.getPage(start, number, $scope.tableState).then(function(result) {
+    customerSrv.getPage(start, number, $scope.tableState, list).then(function(result) {
       console.log(result);
       $scope.displayed = result.data;
       pagination.totalItemCount = result.totalItems;  //设置数据总条数
@@ -66,10 +109,46 @@ function customerCtrl($scope, $filter, $location, $modal, customerSrv){
   }
 }
 
-function addUserCtrl($scope, $modalInstance){
-  var adduserVm = this;
-  adduserVm.closeModal = closeModal;
-  function closeModal(){
-    console.log('a');
+function addCtrl($modalInstance, customerSrv){
+  var addVm = this;
+  addVm.infoList = {
+    type: ['企业用户','个人用户', '内测用户'],
+    channel: ['淘宝', '代理', '招募活动'],
+    product: ['Weker W1', 'Weker W2', 'Weker T1', 'Weker T2'],
+    state: ['待审批', '未通过审批', '通过审批', '未提交'],
+    direction: ['右内', '右外', '左内', '左外'],
+    sohe: ['有', '无']
+  }
+  addVm.addressList = customerSrv.getAddress();
+
+  addVm.closeModal = function(){
+    $modalInstance.dismiss('cancel');
+  }
+
+}
+
+function detailCtrl($modalInstance){
+  var detailVm = this;
+  detailVm.result = [{
+    name: 'zzyq',
+    phone: '15757118202',
+    type: '企业用户',
+    channel: '淘宝',
+    product: 'Weker W1',
+    state: '待审批',
+    direction: '右内',
+    sohe: '有',
+    amount: 10,
+    width: 12,
+    height: 24,
+    remark: '备注备注备注备注备注备注备注备注备注备注备注备注',
+    receiveAddr: '浙江省杭州市余杭区五常大道',
+    receiveDetailAddr: '西溪花园竞舟苑1单元',
+    postAddr: '浙江省杭州市余杭区五常大道',
+    postDetailAddr: '西溪花园竞舟苑1单元',
+    date: '2016-11-09 11:11:11'
+  }]
+  detailVm.closeModal = function(){
+    $modalInstance.dismiss('cancel');
   }
 }
