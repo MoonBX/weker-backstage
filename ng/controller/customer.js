@@ -54,12 +54,13 @@ function customerCtrl($scope, $filter, $location, $modal, customerSrv){
 
   setCustomerInfo();
   // 客户管理: customer
+  checkUrl();
 
   function setCustomerInfo(){
     customerVm.infoList = {
       group: [
-        { sref: 'customer.manage', title: '客户管理', isActive: true },
-        { sref: 'customer.verify', title: '客户审批', isActive: false }
+        { sref: 'customer.manage', path: '/customer/manage', title: '客户管理', isActive: true },
+        { sref: 'customer.verify', path: '/customer/verify', title: '客户审批', isActive: false }
       ],
       type: ['企业用户','个人用户', '内测用户'],
       channel: ['淘宝', '代理', '招募活动'],
@@ -67,6 +68,17 @@ function customerCtrl($scope, $filter, $location, $modal, customerSrv){
       state: ['待审批', '未通过审批', '通过审批', '未提交'],
     }
     return customerVm.infoList;
+  }
+
+  function checkUrl(){
+    var path = $location.path();
+    var arr = customerVm.infoList.group;
+    for(var i=0;i<arr.length;i++){
+      customerVm.infoList.group[i].isActive = false;
+      if(path === arr[i].path){
+        customerVm.infoList.group[i].isActive = true
+      }
+    }
   }
 
   function switchTabNav(index){

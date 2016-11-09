@@ -11,6 +11,11 @@ angular.module('app', [
   'smart-table',
   'mainMdl',
   'customerMdl',
+  'orderMdl',
+  'serviceMdl',
+  'configMdl',
+  'logMdl',
+  'accountMdl',
   'customerApi'
 ]);
 
@@ -44,6 +49,85 @@ function config($stateProvider, $urlRouterProvider){
       controller: "customerCtrl",
       controllerAs: "customerVm"
     })
+    .state('order', {
+      url: "/order",
+      templateUrl: "views/order/home.html",
+      controller: "orderCtrl",
+      controllerAs: "orderVm"
+    })
+    .state('order.receipt', {
+      url: '/receipt',
+      templateUrl: "views/order/receipt.html",
+      controller: "orderCtrl",
+      controllerAs: "orderVm"
+    })
+    .state('order.validate', {
+      url: '/validate',
+      templateUrl: 'views/order/validate.html',
+      controller: "orderCtrl",
+      controllerAs: "orderVm"
+    })
+    .state('service', {
+      url: '/service',
+      templateUrl: 'views/service/home.html',
+      controller: "serviceCtrl",
+      controllerAs: "serviceVm"
+    })
+    .state('service.setup', {
+      url: '/setup',
+      templateUrl: 'views/service/setup.html',
+      controller: "serviceCtrl",
+      controllerAs: "serviceVm"
+    })
+    .state('config', {
+      url: '/config',
+      templateUrl: 'views/config/home.html',
+      controller: "configCtrl",
+      controllerAs: "configVm"
+    })
+    .state('config.banner', {
+      url: '/banner',
+      templateUrl: 'views/config/banner.html',
+      controller: "configCtrl",
+      controllerAs: "configVm"
+    })
+    .state('config.carousel', {
+      url: '/carousel',
+      templateUrl: 'views/config/carousel.html',
+      controller: "configCtrl",
+      controllerAs: "configVm"
+    })
+    .state('config.proto', {
+      url: '/proto',
+      templateUrl: 'views/config/proto.html',
+      controller: "configCtrl",
+      controllerAs: "configVm"
+    })
+    .state('log', {
+      url: '/log',
+      templateUrl: 'views/log/home.html',
+      controller: "logCtrl",
+      controllerAs: "logVm"
+    })
+    .state('log.record', {
+      url: '/record',
+      templateUrl: 'views/log/record.html',
+      controller: "logCtrl",
+      controllerAs: "logVm"
+    })
+    .state('account', {
+      url: '/account',
+      templateUrl: 'views/account/home.html',
+      controller: "accountCtrl",
+      controllerAs: "accountVm"
+    })
+    .state('account.update', {
+      url: '/update',
+      templateUrl: 'views/account/update.html',
+      controller: "accountCtrl",
+      controllerAs: "accountVm"
+    })
+
 
   //$sceDelegateProvider.resourceUrlWhitelist([
   //  // Allow same origin resource loads.
