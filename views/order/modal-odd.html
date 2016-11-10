@@ -1,0 +1,31 @@
+<div class="content-head">
+  订单详情
+  <i class="pull-right fa fa-remove fa-2x m-r-sm m-t-xs"
+     style="cursor: pointer"
+     ng-click="detailVm.closeModal">
+  </i>
+</div>
+<div class="content-main">
+  <form class="form-horizontal m-v b-b" role="form">
+    <div class="form-group">
+      <div class="col-md-12 p-h-n">
+        <label class="control-label pull-left cus-lb-temp-fi">快递公司:&nbsp;&nbsp;</label>
+        <div class="pull-left cus-inp-temp-fi" style="width: 35%">
+          <input type="text" class="form-control pull-left">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-12 p-h-n">
+        <label class="control-label pull-left cus-lb-temp-th">快递单号:&nbsp;&nbsp;</label>
+        <div class="pull-left cus-inp-temp-th" style="width: 65%;">
+          <input type="text" class="form-control pull-left">
+        </div>
+      </div>
+    </div>
+  </form>
+  <form class="form-horizontal m-b-md text-center" >
+    <button class="btn btn-primary btn-sm m-r-md" ng-click="detailVm.closeModal">保存</button>
+    <button class="btn btn-primary btn-sm m-l-md" ng-click="detailVm.closeModal">取消</button>
+  </form>
+</div>

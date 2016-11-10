@@ -11,20 +11,19 @@ function accountCtrl($location){
       {sref: 'account.update', path:'/account/update', title: '修改密码', isActive: true}
     ]
   }
+  accountVm.switchTabNav = switchTabNav;
 
   checkUrl();
   function checkUrl(){
     var path = $location.path();
     var arr = accountVm.infoList.group;
     for(var i=0;i<arr.length;i++){
+      accountVm.infoList.group[i].isActive = false;
       if(path === arr[i].path){
-        arr[i].isActive = true
+        accountVm.infoList.group[i].isActive = true
       }
-      arr[i].isActive = false;
     }
   }
-
-  accountVm.switchTabNav = switchTabNav;
 
   function switchTabNav(index){
     accountVm.currentNav = accountVm.infoList.group[index];

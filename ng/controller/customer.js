@@ -4,7 +4,7 @@
 angular.module('customerMdl', [])
   .controller('customerCtrl', customerCtrl)
   .controller('customer.addCtrl', addCtrl)
-  .controller('customer.detailCtrl', detailCtrl)
+  .controller('customer.detailCtrl', ctDetailCtrl)
 
 function customerCtrl($scope, $filter, $location, $modal, customerSrv){
   var randomsItems = [
@@ -139,7 +139,7 @@ function addCtrl($modalInstance, customerSrv){
 
 }
 
-function detailCtrl($modalInstance){
+function ctDetailCtrl($modalInstance){
   var detailVm = this;
   detailVm.result = [{
     name: 'zzyq',

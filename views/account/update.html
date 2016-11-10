@@ -1,0 +1,27 @@
+<div>
+  <div class="center-block w-xl w-auto-xs m-b-lg">
+    <div class="m-v-md p-v-md b-b">
+      <div class="m-b-xs"><div style="width: 55px; float: left;margin-right: 10px;">用户名:</div><span style="float: left">zyqVizz</span> <div class="clearfix"></div></div>
+      <div><div style="width: 55px; float: left;margin-right: 10px">密码:&nbsp;&nbsp;</div><span style="float: left">zyqVizz</span> <div class="clearfix"></div></div>
+    </div>
+    <div class="m-b text-sm">
+      <i class="fa fa-lock"></i>
+      修改密码
+    </div>
+    <form name="form">
+      <div class="form-group m-b-xs">
+        <label class="hide">oldPassword</label>
+        <input type="text" placeholder="旧密码" class="form-control" required>
+      </div>
+      <div class="form-group m-b-xs">
+        <label class="hide">newPassword</label>
+        <input type="email" placeholder="新密码" class="form-control" ng-model="user.email" required>
+      </div>
+      <div class="form-group m-b-xs">
+        <label class="hide">confirmPassword</label>
+        <input type="password" placeholder="确认密码" class="form-control" ng-model="user.password" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-sm p-h-md m-v-lg">确认</button>
+    </form>
+  </div>
+</div>

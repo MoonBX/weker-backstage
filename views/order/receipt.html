@@ -1,1 +1,68 @@
-aas
+<div class="screen-box m-v-sm b-b p-v-sm">
+  <form class="form-horizontal" role="form">
+    <div class="form-group">
+      <label class="col-md-1 col-sm-4 control-label">购买产品:</label>
+      <div class="col-md-2 col-sm-8">
+        <select ui-select2 ng-model="product" data-placeholder="请选择产品">
+          <option value=""></option>
+          <option ng-value="item" ng-repeat="item in orderVm.infoList.product">{{item}}</option>
+        </select>
+      </div>
+      <label class="col-md-1 col-sm-4 control-label" style="width: 7%">状态:</label>
+      <div class="col-md-2 col-sm-8">
+        <select ui-select2 ng-model="state" data-placeholder="请选择状态">
+          <option value=""></option>
+          <option ng-value="item" ng-repeat="item in orderVm.infoList.state">{{item}}</option>
+        </select>
+      </div>
+      <label for="name" class="col-md-1 col-sm-4 control-label">全局搜索:</label>
+      <div class="col-md-3 col-sm-8">
+        <input type="text" class="form-control" id="name" placeholder="请填写客户信息">
+      </div>
+      <div class="col-md-1">
+        <button class="btn btn-primary btn-sm">搜索</button>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="table-box p-v-sm">
+  <table class="table table-striped wk-table"
+         st-pipe="orderVm.callServerItems"
+         st-table="orderVm.displayed">
+    <thead>
+    <th st-sort="order">序号</th>
+    <th st-sort="name">客户姓名</th>
+    <th st-sort="phone">手机号码</th>
+    <th st-sort="type">客户类型</th>
+    <th st-sort="channel">客户渠道</th>
+    <th st-sort="product">购买产品</th>
+    <th st-sort="amount">购买数量</th>
+    <th st-sort="param">产品参数</th>
+    <th st-sort="state">状态</th>
+    <th>操作</th>
+    </thead>
+    <tbody>
+    <tr ng-repeat="item in displayed">
+      <td>{{$index}}</td>
+      <td>{{item.name}}</td>
+      <td>{{item.phone}}</td>
+      <td>{{item.type}}</td>
+      <td>{{item.channel}}</td>
+      <td>{{item.product}}</td>
+      <td>{{item.amount}}</td>
+      <td>
+        <div>{{item.param.fangxiang}}</div>
+      </td>
+      <td>{{item.state}}</td>
+      <td><a href="javascript:;" ng-click="orderVm.openModal('modal-detail', 'order.detailCtrl as detailVm')">详情</a></td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+      <td colspan="10" class="text-center">
+        <div st-pagination="" st-items-by-page="tableState.pagination.number" st-displayed-pages="7" st-template="./views/customer/template.html"></div>
+      </td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
