@@ -4,8 +4,10 @@
 configCtrl
 angular.module('configMdl', [])
   .controller('configCtrl', configCtrl)
+  .controller('config.addCtrl', addCtrl)
+  .controller('config.carouselCtrl', carouselCtrl);
 
-function configCtrl($location){
+function configCtrl($location, $modal){
   var configVm = this;
   configVm.infoList = {
     group: [
@@ -20,6 +22,7 @@ function configCtrl($location){
   }
 
   configVm.switchTabNav = switchTabNav;
+  configVm.openModal = openModal;
 
   checkUrl();
   function checkUrl(){
@@ -40,5 +43,30 @@ function configCtrl($location){
         configVm.infoList.group[i].isActive = false;
       configVm.currentNav.isActive = true;
     }
+  }
+
+  function openModal(template, controller){
+    $modal.open({
+      templateUrl: './views/config/' + template + '.html',
+      controller: controller
+    })
+  }
+}
+
+function addCtrl($modalInstance){
+  var addVm = this;
+  addVm.cancel = cancel;
+
+  function cancel(){
+    $modalInstance.dismiss('cancel');
+  }
+}
+
+function carouselCtrl($modalInstance){
+  var carVm = this;
+  carVm.cancel = cancel;
+
+  function cancel(){
+    $modalInstance.dismiss('cancel');
   }
 }

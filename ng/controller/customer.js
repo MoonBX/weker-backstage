@@ -7,7 +7,7 @@ angular.module('customerMdl', [])
   .controller('customer.detailCtrl', ctDetailCtrl)
 
 function customerCtrl($scope, $filter, $location, $modal, customerSrv){
-  var randomsItems = [
+  var serverList = [
     {name:'双方1', phone: '15757118222', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
     {name:'双方2', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
     {name:'双方3', phone: '15757118202', type: '企业用户', channel: '淘宝', product: 'Weker W1', amount: '10', param:{fangxiang:'右', tiandigou: true, daopian: '12*12cm'}, state: '待审批'},
@@ -47,7 +47,7 @@ function customerCtrl($scope, $filter, $location, $modal, customerSrv){
 
   customerVm.switchTabNav = switchTabNav;
   customerVm.openModal = openModal;
-  customerVm.callRandomItems = callRandomItems;
+  customerVm.callServerItems = callServerItems;
   customerVm.currentNav = {};
   //smart-table配置变量
   $scope.displayed = [];
@@ -97,15 +97,16 @@ function customerCtrl($scope, $filter, $location, $modal, customerSrv){
     })
   }
 
-  function callRandomItems(tableState) {
+  function callServerItems(tableState) {
     $scope.tableState = tableState; //tableState对象中包含sort排序信息以及search搜索信息
-    getData(1, randomsItems);
+    getData(1, serverList);
   }
 
   function getData(pageNo, list) {
     console.log("getData exe");
     var pagination = $scope.tableState.pagination;
     var start = (pageNo-1)*10 || 0;     //从第几条数据开始查询，默认0条
+    console.log(start);
     var number = pagination.number || 10;   //每页显示条数
     pagination.currentPage = pagination.inputCurPage = pageNo;
     $scope.isLoading = true;    //控制数据加载状态
@@ -133,7 +134,9 @@ function addCtrl($modalInstance, customerSrv){
   }
   addVm.addressList = customerSrv.getAddress();
 
-  addVm.closeModal = function(){
+  addVm.cancel = cancel;
+
+  function cancel(){
     $modalInstance.dismiss('cancel');
   }
 
@@ -141,6 +144,7 @@ function addCtrl($modalInstance, customerSrv){
 
 function ctDetailCtrl($modalInstance){
   var detailVm = this;
+  detailVm.cancel = cancel;
   detailVm.result = [{
     name: 'zzyq',
     phone: '15757118202',
@@ -160,7 +164,7 @@ function ctDetailCtrl($modalInstance){
     postDetailAddr: '西溪花园竞舟苑1单元',
     date: '2016-11-09 11:11:11'
   }]
-  detailVm.closeModal = function(){
+  function cancel(){
     $modalInstance.dismiss('cancel');
   }
 }

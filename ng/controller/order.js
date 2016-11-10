@@ -132,7 +132,8 @@ function odDetailCtrl($modalInstance){
     postDetailAddr: '西溪花园竞舟苑1单元',
     date: '2016-11-09 11:11:11'
   }]
-  detailVm.closeModal = function(){
+  detailVm.cancel = cancel;
+  function cancel(){
     $modalInstance.dismiss('cancel');
   }
 }

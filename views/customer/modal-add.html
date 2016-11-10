@@ -2,7 +2,7 @@
   新增客户
   <i class="pull-right fa fa-remove fa-2x m-r-sm m-t-xs"
      style="cursor: pointer"
-     ng-click="detailVm.closeModal">
+     ng-click="addVm.cancel()">
   </i>
 </div>
 <div class="content-main customer-modal">
@@ -173,13 +173,22 @@
       <div class="col-md-12 p-h-n">
         <label for="name" class="control-label pull-left cus-lb-temp-fi">安装时间:&nbsp;&nbsp;</label>
         <div class="pull-left cus-inp-temp-f" >
-          <input type="text" class="form-control pull-left" placeholder="小区名称">
+          <input type="text" style="height: 32px;position: relative;top: 1px;padding-left: 6px;"
+                 ng-model="dt3"
+                 data-date-format="yyyy-MM-dd"
+                 data-date-type="number"
+                 data-min-date="02/10/86"
+                 data-max-date="today"
+                 data-autoclose="1"
+                 bs-datepicker
+                 placeholder="请选择安装时间"
+          />
         </div>
       </div>
     </div>
   </form>
   <form class="form-horizontal m-b-md text-center" >
-    <button class="btn btn-success btn-sm" ng-click="addVm.closeModal">保存</button>
+    <button class="btn btn-success btn-sm" ng-click="addVm.cancel()">保存</button>
     <button class="btn btn-primary btn-sm">保存并新增下一条</button>
   </form>
 </div>

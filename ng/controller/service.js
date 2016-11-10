@@ -136,7 +136,8 @@ function svDetailCtrl($modalInstance, customerSrv){
 
   detailVm.addressList = customerSrv.getAddress();
 
-  detailVm.closeModal = function(){
+  detailVm.cancel = cancel;
+  function cancel(){
     $modalInstance.dismiss('cancel');
   }
 }

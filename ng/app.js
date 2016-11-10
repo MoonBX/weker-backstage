@@ -9,6 +9,7 @@ angular.module('app', [
   'ui.bootstrap',
   'mgcrea.ngStrap.datepicker',
   'ui.select2',
+  'ngAnimate',
   'smart-table',
   'mainMdl',
   'customerMdl',
@@ -103,6 +104,18 @@ function config($stateProvider, $urlRouterProvider){
     .state('config.proto', {
       url: '/proto',
       templateUrl: 'views/config/proto.html',
+      controller: "configCtrl",
+      controllerAs: "configVm"
+    })
+    .state('config.active', {
+      url: '/activity',
+      templateUrl: 'views/config/activity.html',
+      controller: "configCtrl",
+      controllerAs: "configVm"
+    })
+    .state('config.push', {
+      url: '/push',
+      templateUrl: 'views/config/push.html',
       controller: "configCtrl",
       controllerAs: "configVm"
     })

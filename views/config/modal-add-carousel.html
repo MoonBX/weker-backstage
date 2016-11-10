@@ -1,0 +1,65 @@
+<div class="content-head">
+  新增轮播图
+  <i class="pull-right fa fa-remove fa-2x m-r-sm m-t-xs"
+     style="cursor: pointer"
+     ng-click="carVm.cancel()">
+  </i>
+</div>
+<div class="content-main customer-modal">
+  <form class="form-horizontal m-v-md b-b" role="form" style="padding-right: 30px;padding-left: 15px;">
+    <div class="form-group">
+      <div class="col-md-12 p-h-n">
+        <label for="name" class="control-label pull-left cus-lb-temp-f">位置:&nbsp;&nbsp;</label>
+        <input type="text" class="form-control pull-left cus-inp-temp-t" id="name" style="width: 180px;">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-12 p-h-n">
+        <label class="control-label pull-left cus-lb-temp-f">标题:&nbsp;&nbsp;</label>
+        <input type="text" class="form-control pull-left cus-inp-temp-t" style="width: 372px;">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-12 p-h-n">
+        <label class="control-label pull-left cus-lb-temp-f">上线时间:&nbsp;&nbsp;</label>
+        <div class="pull-left" >
+          <input type="text" style="width: 180px;height: 32px;position: relative;top: 1px;padding-left: 6px;"
+                 ng-model="dt6"
+                 data-date-format="yyyy-MM-dd"
+                 data-date-type="number"
+                 data-min-date="02/10/86"
+                 data-max-date="today"
+                 data-autoclose="1"
+                 bs-datepicker
+                 placeholder="请输入上线日期"
+          />&nbsp;-
+          <input type="text" style="width: 180px;height: 32px;position: relative;top: 1px;padding-left: 6px;"
+                 ng-model="dt5"
+                 data-date-format="yyyy-MM-dd"
+                 data-date-type="number"
+                 data-min-date="02/10/86"
+                 data-max-date="today"
+                 data-autoclose="1"
+                 bs-datepicker
+                 placeholder="请输入下线日期"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-12 p-h-n">
+        <label class="control-label pull-left cus-lb-temp-f">跳转URL:&nbsp;&nbsp;</label>
+        <input type="text" class="form-control pull-left" style="width: 372px">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-12 p-h-n">
+        <label class="control-label pull-left cus-lb-temp-f">上传图片:&nbsp;&nbsp;</label>
+
+      </div>
+    </div>
+  </form>
+  <form class="form-horizontal m-b-md text-center" >
+    <button class="btn btn-success btn-sm" ng-click="carVm.cancel()">确认</button>
+  </form>
+</div>
