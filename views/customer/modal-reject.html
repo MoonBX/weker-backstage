@@ -1,0 +1,30 @@
+<div class="content-head">
+  拒绝理由
+  <i class="pull-right fa fa-remove fa-2x m-r-sm m-t-xs"
+     style="cursor: pointer"
+     ng-click="rejectVm.cancel()">
+  </i>
+</div>
+<div class="content-main">
+  <form class="form-horizontal m-v b-b" role="form">
+    <div class="form-group">
+      <div class="col-md-12 p-h-n">
+        <label class="control-label pull-left cus-lb-temp-fi" style="width: 38%">请在下面文本域中输入拒绝理由:&nbsp;&nbsp;</label>
+        <div class="pull-left cus-inp-temp-fi" style="width: 10%">
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-12 p-h-n" style="padding-left: 30px; padding-right: 30px ">
+        <label class="control-label hide"></label>
+        <div class="pull-left cus-inp-temp-th" style="width: 100%;">
+          <textarea class="form-control" style="width: 100%; height: 100px;"></textarea>
+        </div>
+      </div>
+    </div>
+  </form>
+  <form class="form-horizontal m-b-md text-center" >
+    <button class="btn btn-primary btn-sm m-r-md" ng-click="rejectVm.cancel()">保存</button>
+    <button class="btn btn-primary btn-sm m-l-md" ng-click="rejectVm.cancel()">取消</button>
+  </form>
+</div>

@@ -19,18 +19,20 @@ angular.module('app', [
   'configMdl',
   'logMdl',
   'accountMdl',
-  'customerApi'
+  'customerApi',
+  'toastr'
 ]);
 
 angular.module('app')
   .config(config)
   .run(initConfig);
 
-function initConfig( uiSelect2Config){
+function initConfig( uiSelect2Config, toastrConfig){
   uiSelect2Config.minimumResultsForSearch = -1;
+  angular.extend(toastrConfig, {
+    timeOut: 1500
+  })
 }
-
-
 
 function config($stateProvider, $urlRouterProvider){
   $urlRouterProvider.otherwise('/customer/manage');

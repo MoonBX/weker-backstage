@@ -5,6 +5,7 @@ angular.module('customerMdl', [])
   .controller('customerCtrl', customerCtrl)
   .controller('customer.addCtrl', addCtrl)
   .controller('customer.detailCtrl', ctDetailCtrl)
+  .controller('customer.rejectCtrl', rejectCtrl);
 
 function customerCtrl($scope, $filter, $location, $modal, customerSrv, NgTableParams){
   var serverList = customerSrv.getProduct();
@@ -64,7 +65,7 @@ function customerCtrl($scope, $filter, $location, $modal, customerSrv, NgTablePa
 
 }
 
-function addCtrl($modalInstance, customerSrv){
+function addCtrl($modalInstance, $timeout, customerSrv, toastr){
   var addVm = this;
   addVm.infoList = {
     type: ['企业用户','个人用户', '内测用户'],
@@ -77,7 +78,15 @@ function addCtrl($modalInstance, customerSrv){
   addVm.addressList = customerSrv.getAddress();
 
   addVm.cancel = cancel;
+  addVm.save = save;
 
+  function save(){
+    toastr.success('保存成功');
+    $timeout(function(){
+      $modalInstance.dismiss('cancel');
+    },1000)
+
+  }
   function cancel(){
     $modalInstance.dismiss('cancel');
   }
@@ -106,6 +115,14 @@ function ctDetailCtrl($modalInstance){
     postDetailAddr: '西溪花园竞舟苑1单元',
     date: '2016-11-09 11:11:11'
   }]
+  function cancel(){
+    $modalInstance.dismiss('cancel');
+  }
+}
+
+function rejectCtrl($modalInstance){
+  var rejectVm = this;
+  rejectVm.cancel = cancel;
   function cancel(){
     $modalInstance.dismiss('cancel');
   }

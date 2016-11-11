@@ -51,7 +51,11 @@
         <div>{{item.param.fangxiang}}</div>
       </td>
       <td>{{item.state}}</td>
-      <td><a href="javascript:;" ng-click="customerVm.openModal('modal-detail', 'customer.detailCtrl as detailVm')">详情</a></td>
+      <td>
+        <a href="javascript:;" ng-click="customerVm.openModal('modal-detail', 'customer.detailCtrl as detailVm')">详情</a> |
+        <span class="text-success cursor-pointer">通过</span> |
+        <span class="text-danger cursor-pointer" ng-click="customerVm.openModal('modal-reject', 'customer.rejectCtrl as rejectVm')">拒绝</span>
+      </td>
     </tr>
   </table>
 </div>
