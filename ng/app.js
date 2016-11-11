@@ -120,6 +120,18 @@ function config($stateProvider, $urlRouterProvider){
       controller: "configCtrl",
       controllerAs: "configVm"
     })
+    .state('config.appLaunch', {
+      url: '/appLaunch',
+      templateUrl: 'views/config/appLaunch.html',
+      controller: "configCtrl",
+      controllerAs: "configVm"
+    })
+    .state('config.upgrade', {
+      url: '/upgrade',
+      templateUrl: 'views/config/upgrade.html',
+      controller: "configCtrl",
+      controllerAs: "configVm"
+    })
     .state('log', {
       url: '/log',
       templateUrl: 'views/log/home.html',

@@ -7,7 +7,7 @@ angular.module('configMdl', [])
   .controller('config.addCtrl', addCtrl)
   .controller('config.carouselCtrl', carouselCtrl);
 
-function configCtrl($location, $modal){
+function configCtrl($location, $scope, $modal){
   var configVm = this;
   configVm.infoList = {
     group: [
@@ -16,10 +16,11 @@ function configCtrl($location, $modal){
       {sref: 'config.proto', path: '/config/proto', title: '协议配置', isActive: false},
       {sref: 'config.active', path: '/config/active', title: '活动配置', isActive: false},
       {sref: 'config.push', path: '/config/push', title: '推送配置', isActive: false},
-      {sref: 'config.launch', path: '/config/launch', title: '启动页配置', isActive: false},
-      {sref: 'config.update', path: '/config/update', title: '固件更新推送', isActive: false},
+      {sref: 'config.appLaunch', path: '/config/appLaunch', title: '启动页配置', isActive: false},
+      {sref: 'config.upgrade', path: '/config/upgrade', title: '固件更新推送', isActive: false},
     ]
   }
+  $scope.d = 'android';
 
   configVm.switchTabNav = switchTabNav;
   configVm.openModal = openModal;

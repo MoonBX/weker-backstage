@@ -2,7 +2,7 @@
   <form class="form-horizontal m-v-md" role="form">
     <div class="form-group">
       <div class="col-md-12 p-h-n">
-        <label class="control-label pull-left cus-lb-temp-f">手机型号:&nbsp;&nbsp;</label>
+        <label class="control-label pull-left cus-lb-temp-f">手机型号1:&nbsp;&nbsp;</label>
         <div class="pull-left cus-inp-temp-t" style="width: 200px">
           <div class="radio pull-left">
             <label class="ui-checks">
@@ -21,8 +21,8 @@
         </div>
       </div>
     </div>
-    <div class="form-group" ng-if="d == 'android'">
-      <div class="col-md-12 p-h-n">
+    <div class="form-group">
+      <div class="col-md-12 p-h-n" ng-if="d == 'android'">
         <label class="control-label pull-left cus-lb-temp-f">标题:&nbsp;&nbsp;</label>
         <input type="text" class="form-control pull-left cus-inp-temp-t" style="width: 300px;">
       </div>
@@ -35,26 +35,25 @@
     </div>
     <div class="form-group">
       <div class="col-md-12 p-h-n">
-        <label class="control-label pull-left cus-lb-temp-f">对象:&nbsp;&nbsp;</label>
+        <label class="control-label pull-left cus-lb-temp-f">设备类型:&nbsp;&nbsp;</label>
         <div class="pull-left cus-inp-temp-t" style="width: 200px">
-          <select ui-select2 ng-model="no2" data-placeholder="请选择对象">
+          <select ui-select2 ng-model="no6" data-placeholder="请选择对象">
             <option value=""></option>
-            <option>一周内未启动app</option>
-            <option>一月内未启动app</option>
-            <option>一年内未启动app</option>
+            <option>蓝牙指纹</option>
+            <option>指纹蓝牙</option>
           </select>
         </div>
       </div>
     </div>
     <div class="form-group">
       <div class="col-md-12 p-h-n">
-        <label class="control-label pull-left cus-lb-temp-f">位置:&nbsp;&nbsp;</label>
+        <label class="control-label pull-left cus-lb-temp-f">设备版本:&nbsp;&nbsp;</label>
         <div class="pull-left cus-inp-temp-t" style="width: 200px">
-          <select ui-select2 ng-model="no3" data-placeholder="请选择位置">
+          <select ui-select2 ng-model="no5" data-placeholder="请选择位置">
             <option value=""></option>
-            <option>一周内</option>
-            <option>一月内</option>
-            <option>一年内</option>
+            <option>1.0.0</option>
+            <option>2.0.0</option>
+            <option>3.0.0</option>
           </select>
         </div>
       </div>
