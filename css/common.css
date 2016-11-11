@@ -295,3 +295,10 @@ nav ul.nav li a {
   padding-left: 12px;
 
 }
+
+/*page*/
+.page-skip{
+  width: 150px;
+  position: relative;
+  top: 13px;
+}

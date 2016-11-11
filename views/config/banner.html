@@ -9,38 +9,5 @@
   </form>
 </div>
 <div class="table-box p-v-sm">
-  <table class="table table-striped wk-table" st-pipe="configVm.callServerItems" st-table="configVm.displayed">
-    <thead>
-    <tr>
-      <th st-sort="order">权重</th>
-      <th st-sort="name">缩略图</th>
-      <th st-sort="phone">跳转URL</th>
-      <th st-sort="type">上线时间</th>
-      <th>操作</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat="item in displayed">
-      <td>{{$index}}</td>
-      <td>{{item.name}}</td>
-      <td>{{item.phone}}</td>
-      <td>{{item.type}}</td>
-      <td>{{item.channel}}</td>
-      <td>{{item.product}}</td>
-      <td>{{item.amount}}</td>
-      <td>
-        <div>{{item.param.fangxiang}}</div>
-      </td>
-      <td>{{item.state}}</td>
-      <td><a href="javascript:;">修改</a></td>
-    </tr>
-    </tbody>
-    <tfoot>
-    <tr>
-      <!--<td colspan="5" class="text-center">-->
-        <!--<div st-pagination="" st-items-by-page="tableState.pagination.number" st-displayed-pages="7" st-template="./views/customer/template.html"></div>-->
-      <!--</td>-->
-    </tr>
-    </tfoot>
-  </table>
+
 </div>

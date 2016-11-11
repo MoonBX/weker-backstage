@@ -26,21 +26,20 @@
   </form>
 </div>
 <div class="table-box p-v-sm">
-  <table class="table table-striped wk-table" st-pipe="orderVm.callServerItems" st-table="orderVm.displayed">
+  <table ng-table="orderVm.tableParams" class="table table-striped wk-table">
     <thead>
-    <th st-sort="order">序号</th>
-    <th st-sort="name">客户姓名</th>
-    <th st-sort="phone">手机号码</th>
-    <th st-sort="type">客户类型</th>
-    <th st-sort="channel">客户渠道</th>
-    <th st-sort="product">购买产品</th>
-    <th st-sort="amount">购买数量</th>
-    <th st-sort="param">产品参数</th>
-    <th st-sort="state">状态</th>
+    <th>序号</th>
+    <th>客户姓名</th>
+    <th>手机号码</th>
+    <th>客户类型</th>
+    <th>客户渠道</th>
+    <th>购买产品</th>
+    <th>购买数量</th>
+    <th>产品参数</th>
+    <th>状态</th>
     <th>操作</th>
     </thead>
-    <tbody>
-    <tr ng-repeat="item in displayed">
+    <tr ng-repeat="item in $data">
       <td>{{$index}}</td>
       <td>{{item.name}}</td>
       <td>{{item.phone}}</td>
@@ -54,13 +53,10 @@
       <td>{{item.state}}</td>
       <td><a href="javascript:;" ng-click="orderVm.openModal('modal-odd', 'order.detailCtrl as detailVm')">快递单号</a></td>
     </tr>
-    </tbody>
-    <tfoot>
-    <tr>
-      <!--<td colspan="10" class="text-center">-->
-        <!--<div st-pagination="" st-items-by-page="tableState.pagination.number" st-displayed-pages="7" st-template="./views/customer/template.html"></div>-->
-      <!--</td>-->
-    </tr>
-    </tfoot>
   </table>
+</div>
+<div class="page-skip pull-left">
+  <span>跳转至</span>
+  <input type="number" class="form-control" id="pageBinding" min="1" ng-model="orderVm.tableParams.page" ng-model-options="{ getterSetter: true }" style="width:80px;display: inline-block;">
+  <span>页</span>
 </div>

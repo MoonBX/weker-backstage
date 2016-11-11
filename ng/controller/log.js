@@ -4,15 +4,28 @@
 angular.module('logMdl', [])
   .controller('logCtrl', logCtrl)
 
-function logCtrl($location, $scope){
+function logCtrl($location, $scope, NgTableParams){
   var logVm = this;
   logVm.infoList = {
     group: [
       {sref: 'log.record', path:'/log/record', title: '登陆日志', isActive: true}
     ]
-  }
+  };
+  var serverList = [
+    {loginTime: '2016-02-12', loginAccount: 'abcccbb', ip: '192.168.1.1', place: '浙江省'},
+    {loginTime: '2016-02-12', loginAccount: 'abcccbb', ip: '192.168.1.1', place: '浙江省'},
+    {loginTime: '2016-02-12', loginAccount: 'abcccbb', ip: '192.168.1.1', place: '浙江省'},
+    {loginTime: '2016-02-12', loginAccount: 'abcccbb', ip: '192.168.1.1', place: '浙江省'},
+    {loginTime: '2016-02-12', loginAccount: 'abcccbb', ip: '192.168.1.1', place: '浙江省'},
+    {loginTime: '2016-02-12', loginAccount: 'abcccbb', ip: '192.168.1.1', place: '浙江省'},
+    {loginTime: '2016-02-12', loginAccount: 'abcccbb', ip: '192.168.1.1', place: '浙江省'},
+    {loginTime: '2016-02-12', loginAccount: 'abcccbb', ip: '192.168.1.1', place: '浙江省'},
+    {loginTime: '2016-02-12', loginAccount: 'abcccbb', ip: '192.168.1.1', place: '浙江省'},
+    {loginTime: '2016-02-12', loginAccount: 'abcccbb', ip: '192.168.1.1', place: '浙江省'},
+  ]
 
   logVm.switchTabNav = switchTabNav;
+  logVm.tableParams = new NgTableParams({ count: 7 }, { counts: [5], dataset: serverList});
 
   checkUrl();
   function checkUrl(){

@@ -37,7 +37,7 @@
   </form>
 </div>
 <div class="table-box p-v-sm">
-  <table class="table table-striped wk-table" st-pipe="logVm.callServerItems" st-table="logVm.displayed">
+  <table ng-table="logVm.tableParams" class="table table-striped wk-table">
     <thead>
     <th>
       <div class="checkbox no-margin">
@@ -49,35 +49,29 @@
         </label>
       </div>
     </th>
-    <th st-sort="name">登录时间</th>
-    <th st-sort="phone">登录账号</th>
-    <th st-sort="type">IP地址</th>
-    <th st-sort="channel">参考地点</th>
+    <th>登录时间</th>
+    <th>登录账号</th>
+    <th>IP地址</th>
+    <th>参考地点</th>
     </thead>
-    <tbody>
-    <tr ng-repeat="item in displayed">
+    <tr ng-repeat="item in $data">
       <td>
         <div class="checkbox no-margin">
-          <label class="ui-checks">
-            <!--<span style="display: none">{{item.device.code}}</span>-->
-            <!--<span style="display: none">{{item.device.id}}</span>-->
-            <input type="checkbox">
-            <i></i>
-          </label>
+        <label class="ui-checks">
+          <input type="checkbox">
+          <i></i>
+        </label>
         </div>
       </td>
-      <td>{{item.name}}</td>
-      <td>{{item.phone}}</td>
-      <td>{{item.type}}</td>
-      <td>{{item.channel}}</td>
+      <td>{{item.loginTime}}</td>
+      <td>{{item.loginAccount}}</td>
+      <td>{{item.ip}}</td>
+      <td>{{item.place}}</td>
     </tr>
-    </tbody>
-    <tfoot>
-    <tr>
-      <!--<td colspan="10" class="text-center">-->
-        <!--<div st-pagination="" st-items-by-page="tableState.pagination.number" st-displayed-pages="7" st-template="./views/customer/template.html"></div>-->
-      <!--</td>-->
-    </tr>
-    </tfoot>
   </table>
+</div>
+<div class="page-skip pull-left">
+  <span>跳转至</span>
+  <input type="number" class="form-control" id="pageBinding" min="1" ng-model="logVm.tableParams.page" ng-model-options="{ getterSetter: true }" style="width:80px;display: inline-block;">
+  <span>页</span>
 </div>
