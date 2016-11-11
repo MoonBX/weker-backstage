@@ -30,7 +30,8 @@ angular.module('app')
 function initConfig( uiSelect2Config, toastrConfig){
   uiSelect2Config.minimumResultsForSearch = -1;
   angular.extend(toastrConfig, {
-    timeOut: 1500
+    timeOut: 1500,
+    //timeout
   })
 }
 
