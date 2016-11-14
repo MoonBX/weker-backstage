@@ -5,32 +5,31 @@ angular.module('orderMdl', [])
   .controller('orderCtrl', orderCtrl)
   .controller('order.detailCtrl', odDetailCtrl)
 
-function orderCtrl($modal, customerSrv, appSrv, NgTableParams){
+function orderCtrl($modal, appSrv, NgTableParams){
   var orderVm = this;
-  var serverList = customerSrv.getProduct();
-  orderVm.infoList = {
-    group: [
-      {sref: 'order.receipt', path:'/order/receipt', title: '订单签收', isActive: true},
-      {sref: 'order.validate', path:'/order/validate', title: '订单校验', isActive: false}
-    ],
-    type: ['企业用户','个人用户', '内测用户'],
-    channel: ['淘宝', '代理', '招募活动'],
-    product: ['Weker W1', 'Weker W2', 'Weker T1', 'Weker T2'],
-    state: ['待审批', '未通过审批', '通过审批', '未提交'],
-  };
+
+  orderVm.serverList = appSrv.getProduct();
+  orderVm.navGroup = [
+    {sref: 'order.receipt', path:'/order/receipt', title: '订单签收', isActive: true},
+    {sref: 'order.validate', path:'/order/validate', title: '订单校验', isActive: false}
+  ];
+  orderVm.infoList = appSrv.getInfoList();
 
   orderVm.switchTabNav = switchTabNav;
   orderVm.openModal = openModal;
   orderVm.currentNav = {};
-  orderVm.tableParams = new NgTableParams({ count: 7 }, { counts: [5], dataset: serverList});
+  orderVm.tableParams = new NgTableParams(
+    { count: 7 },
+    { counts: [5], dataset: orderVm.serverList}
+  );
 
   checkUrl();
   function checkUrl(){
-    appSrv.checkUrl(orderVm.infoList.group);
+    appSrv.checkUrl(orderVm.navGroup);
   }
 
   function switchTabNav(index){
-    appSrv.switchTabNav(orderVm.currentNav, orderVm.infoList.group, index);
+    appSrv.switchTabNav(orderVm.currentNav, orderVm.navGroup, index);
   }
 
   function openModal(template, controller){

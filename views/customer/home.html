@@ -4,7 +4,7 @@
       <a ui-sref="{{item.sref}}"
          ng-class="{'active': item.isActive}"
          ng-click="customerVm.switchTabNav($index)"
-         ng-repeat="item in customerVm.infoList.group">
+         ng-repeat="item in customerVm.navGroup">
         {{item.title}}
       </a>
     </div>

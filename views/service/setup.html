@@ -39,7 +39,7 @@
       <div class="col-md-2 col-sm-8">
         <select ui-select2 ng-model="state" data-placeholder="请选择状态">
           <option value=""></option>
-          <option ng-value="item" ng-repeat="item in serviceVm.infoList.state">{{item}}</option>
+          <option ng-value="item" ng-repeat="item in serviceVm.service_state">{{item}}</option>
         </select>
       </div>
     </div>
@@ -68,9 +68,10 @@
       <td>{{item.product}}</td>
       <td>{{item.amount}}</td>
       <td>
-        <div>{{item.param.fangxiang}}</div>
+        <div>开门方向: {{item.param.direction}}</div>
+        <div>锁体导片: {{item.param.daopian}}</div>
       </td>
-      <td>{{item.state}}</td>
+      <td>{{item.service_state}}</td>
       <td><a href="javascript:;" ng-click="serviceVm.openModal('modal-detail', 'service.detailCtrl as detailVm')">详情</a></td>
     </tr>
   </table>

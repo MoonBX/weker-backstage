@@ -4,8 +4,8 @@
 angular.module('appApi', [])
   .factory('appSrv', appSrv);
 
-//appSrv.$inject = ['$q', '$filter', '$timeout', '$http', '$location'];
-function appSrv($location){
+appSrv.$inject = ['$q', '$location', '$http'];
+function appSrv($q, $location, $http){
   function checkUrl(arr){
     var path = $location.path();
     for(var i=0;i<arr.length;i++){
@@ -26,8 +26,82 @@ function appSrv($location){
     }
   }
 
+  function getInfoList(){
+    var obj = {
+      type: ['企业用户','个人用户', '内测用户'],
+      channel: ['淘宝', '代理', '招募活动'],
+      product: ['Weker W1', 'Weker W2', 'Weker T1', 'Weker T2'],
+      customerM_state: ['待审批', '未通过审批', '通过审批', '未提交'],
+      customerV_state: ['待审批', '未通过审批', '通过审批', '未通过签收'],
+      orderR_state: ['待签收', '未通过签收', '通过签收'],
+      orderV_state: ['待出货', '已出货'],
+      service_state: ['已出货', '安装中', '已安装'],
+      direction: ['右内', '右外', '左内', '左外'],
+      sohe: ['有', '无']
+    };
+    return obj;
+  }
+
+  function getProduct(){
+    var serverList = [];
+    var item = {};
+    var arr = {
+      nameArr: ['一一', '二二', '三三', '四四'],
+      phoneArr: ['15757118202', '15757118293', '15757192394'],
+      amountArr: [10, 20, 30],
+      daopian: ['12*12cm', '39*39cm', '4*4cm'],
+      type: ['企业用户','个人用户', '内测用户'],
+      channel: ['淘宝', '代理', '招募活动'],
+      product: ['Weker W1', 'Weker W2', 'Weker T1', 'Weker T2'],
+      customerM_state: ['待审批', '未通过审批', '通过审批', '未提交'],
+      customerV_state: ['待审批', '未通过审批', '通过审批', '未通过签收'],
+      orderR_state: ['待签收', '未通过签收', '通过签收'],
+      orderV_state: ['待出货', '已出货'],
+      service_state: ['已出货', '安装中', '已安装'],
+      direction: ['右内', '右外', '左内', '左外'],
+      sohe: ['有', '无']
+    };
+    for(var i=0; i<100; i++){
+      item = {
+        name: arr.nameArr[Math.floor(Math.random()*arr.nameArr.length)],
+        phone: arr.phoneArr[Math.floor(Math.random()*arr.phoneArr.length)],
+        amount: arr.amountArr[Math.floor(Math.random()*arr.amountArr.length)],
+        type: arr.type[Math.floor(Math.random()*arr.type.length)],
+        channel: arr.channel[Math.floor(Math.random()*arr.channel.length)],
+        product: arr.product[Math.floor(Math.random()*arr.product.length)],
+        customerM_state: arr.customerM_state[Math.floor(Math.random()*arr.customerM_state.length)],
+        customerV_state: arr.customerV_state[Math.floor(Math.random()*arr.customerV_state.length)],
+        orderR_state: arr.orderR_state[Math.floor(Math.random()*arr.orderR_state.length)],
+        orderV_state: arr.orderV_state[Math.floor(Math.random()*arr.orderV_state.length)],
+        service_state: arr.service_state[Math.floor(Math.random()*arr.service_state.length)],
+        param: {
+          direction: arr.direction[Math.floor(Math.random()*arr.direction.length)],
+          daopian: arr.daopian[Math.floor(Math.random()*arr.daopian.length)]
+        }
+      };
+      serverList.push(item);
+    }
+    return serverList;
+  }
+
+  function getAddress(){
+    var defer = $q.defer();
+    $http.get("./json/address.json")
+      .success(function (data) {
+        defer.resolve(data);
+      })
+      .error(function(data){
+        defer.reject();
+        console.log(data);
+      });
+    return defer.promise;
+  }
+
   return {
     checkUrl: checkUrl,
-    switchTabNav: switchTabNav
+    switchTabNav: switchTabNav,
+    getInfoList: getInfoList,
+    getProduct: getProduct,
+    getAddress: getAddress
   }
 }

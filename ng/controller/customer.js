@@ -7,41 +7,32 @@ angular.module('customerMdl', [])
   .controller('customer.detailCtrl', ctDetailCtrl)
   .controller('customer.rejectCtrl', rejectCtrl);
 
-function customerCtrl($filter, $modal, customerSrv, appSrv, NgTableParams){
-  var serverList = customerSrv.getProduct();
+function customerCtrl($filter, $modal, appSrv, NgTableParams){
   var customerVm = this;
 
   customerVm.switchTabNav = switchTabNav;
   customerVm.openModal = openModal;
   customerVm.currentNav = {};
-  //smart-table配置变量
 
-  setCustomerInfo();
-  // 客户管理: customer
+  customerVm.serverList = appSrv.getProduct();
+  customerVm.infoList = appSrv.getInfoList();
+  customerVm.navGroup = [
+    { sref: 'customer.manage', path: '/customer/manage', title: '客户管理', isActive: true },
+    { sref: 'customer.verify', path: '/customer/verify', title: '客户审批', isActive: false }
+  ];
+  customerVm.tableParams = new NgTableParams(
+    { count: 7 },
+    { counts: [5], dataset: customerVm.serverList}
+  );
+
   checkUrl();
 
-  customerVm.tableParams = new NgTableParams({ count: 7 }, { counts: [5], dataset: serverList});
-
-  function setCustomerInfo(){
-    customerVm.infoList = {
-      group: [
-        { sref: 'customer.manage', path: '/customer/manage', title: '客户管理', isActive: true },
-        { sref: 'customer.verify', path: '/customer/verify', title: '客户审批', isActive: false }
-      ],
-      type: ['企业用户','个人用户', '内测用户'],
-      channel: ['淘宝', '代理', '招募活动'],
-      product: ['Weker W1', 'Weker W2', 'Weker T1', 'Weker T2'],
-      state: ['待审批', '未通过审批', '通过审批', '未提交'],
-    }
-    return customerVm.infoList;
-  }
-
   function checkUrl(){
-    appSrv.checkUrl(customerVm.infoList.group);
+    appSrv.checkUrl(customerVm.navGroup);
   }
 
   function switchTabNav(index){
-    appSrv.switchTabNav(customerVm.currentNav, customerVm.infoList.group, index);
+    appSrv.switchTabNav(customerVm.currentNav, customerVm.navGroup, index);
   }
 
   function openModal(template, controller){
@@ -53,20 +44,21 @@ function customerCtrl($filter, $modal, customerSrv, appSrv, NgTableParams){
 
 }
 
-function addCtrl($modalInstance, $timeout, customerSrv, toastr){
+function addCtrl($modalInstance, $timeout, appSrv, toastr){
   var addVm = this;
-  addVm.infoList = {
-    type: ['企业用户','个人用户', '内测用户'],
-    channel: ['淘宝', '代理', '招募活动'],
-    product: ['Weker W1', 'Weker W2', 'Weker T1', 'Weker T2'],
-    state: ['待审批', '未通过审批', '通过审批', '未提交'],
-    direction: ['右内', '右外', '左内', '左外'],
-    sohe: ['有', '无']
-  }
-  addVm.addressList = customerSrv.getAddress();
+  addVm.infoList = appSrv.getInfoList();
 
   addVm.cancel = cancel;
   addVm.save = save;
+  addVm.getAddress = getAddress;
+
+  getAddress();
+
+  function getAddress(){
+    appSrv.getAddress().then(function(data){
+      addVm.addressList = data[0];
+    });
+  }
 
   function save(){
     toastr.success('保存成功');
