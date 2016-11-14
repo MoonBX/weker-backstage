@@ -226,6 +226,9 @@ nav ul.nav li a {
 }
 .my-select::-ms-expand { display: none; }
 /*table*/
+.table{
+  font-size: 13px;
+}
 .table-box table.wk-table thead{
   background: #7d9cd4;
   /*background: #4cb2db;*/

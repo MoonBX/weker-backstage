@@ -21,7 +21,8 @@ angular.module('app', [
   'logMdl',
   'accountMdl',
   'appApi',
-  'customerApi'
+  'customerApi',
+  'orderApi'
 ]);
 
 angular.module('app')

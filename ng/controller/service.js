@@ -10,6 +10,11 @@ function serviceCtrl($modal, appSrv, NgTableParams){
   serviceVm.navGroup = [
     {sref: 'service.setup', path:'/service/setup', title: '安装跟进', isActive: true}
   ]
+  var attr = [
+    {state: 'shipped', state_title: '已出货', class: 'text-success', option: ['安装']},
+    {state: 'installing', state_title: '安装中', class: 'text-warning', option: ['详情', '修改']},
+    {state: 'installed', state_title: '已安装', class: 'text-success', option: ['详情']}
+  ];
   serviceVm.serverList = appSrv.getProduct();
   serviceVm.infoList = appSrv.getInfoList();
   serviceVm.currentNav = {};
@@ -23,6 +28,7 @@ function serviceCtrl($modal, appSrv, NgTableParams){
 
 
   checkUrl();
+  setExtraAttr(serviceVm.serverList, attr, 'service_state');
 
   function checkUrl(){
     appSrv.checkUrl(serviceVm.navGroup);
@@ -37,6 +43,19 @@ function serviceCtrl($modal, appSrv, NgTableParams){
       templateUrl: './views/service/' + template + '.html',
       controller: controller
     })
+  }
+
+  function setExtraAttr(dataList, array, stateTxt){
+    for(var i=0; i<dataList.length; i++){
+      for(var j=0; j<array.length; j++){
+        if(dataList[i][stateTxt] == array[j].state){
+          dataList[i][stateTxt] = array[j].state_title;
+          dataList[i][stateTxt+'_class'] = array[j].class;
+          dataList[i][stateTxt+'_option'] = array[j].option;
+        }
+      }
+    }
+    return dataList;
   }
 }
 

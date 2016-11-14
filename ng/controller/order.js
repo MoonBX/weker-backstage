@@ -18,12 +18,25 @@ function orderCtrl($modal, appSrv, NgTableParams){
   orderVm.switchTabNav = switchTabNav;
   orderVm.openModal = openModal;
   orderVm.currentNav = {};
+  var rAttr = [
+    {state: 'pending', state_title: '待签收', class: 'text-warning', option: ['通过', '拒绝']},
+    {state: 'failing', state_title: '未通过签收', class: 'text-danger', option: []},
+    {state: 'approve', state_title: '通过签收', class: 'text-success', option: []}
+  ];
+  var vAttr = [
+    {state: 'shipping', state_title: '待出货', class: 'text-warning', option: ['快递单号']},
+    {state: 'shipped', state_title: '已出货', class: 'text-success', option: []}
+  ];
+
+  checkUrl();
+  setExtraAttr(orderVm.serverList, rAttr, 'orderR_state');
+  setExtraAttr(orderVm.serverList, vAttr, 'orderV_state');
+
   orderVm.tableParams = new NgTableParams(
     { count: 7 },
     { counts: [5], dataset: orderVm.serverList}
   );
 
-  checkUrl();
   function checkUrl(){
     appSrv.checkUrl(orderVm.navGroup);
   }
@@ -38,30 +51,28 @@ function orderCtrl($modal, appSrv, NgTableParams){
       controller: controller
     })
   }
+
+  function setExtraAttr(dataList, array, stateTxt){
+    for(var i=0; i<dataList.length; i++){
+      for(var j=0; j<array.length; j++){
+        if(dataList[i][stateTxt] == array[j].state){
+          dataList[i][stateTxt] = array[j].state_title;
+          dataList[i][stateTxt+'_class'] = array[j].class;
+          dataList[i][stateTxt+'_option'] = array[j].option;
+        }
+      }
+    }
+    return dataList;
+  }
 }
 
-function odDetailCtrl($modalInstance){
+function odDetailCtrl($modalInstance, orderSrv){
   var detailVm = this;
-  detailVm.result = [{
-    name: 'zzyq',
-    phone: '15757118202',
-    type: '企业用户',
-    channel: '淘宝',
-    product: 'Weker W1',
-    state: '待审批',
-    direction: '右内',
-    sohe: '有',
-    amount: 10,
-    width: 12,
-    height: 24,
-    remark: '备注备注备注备注备注备注备注备注备注备注备注备注',
-    receiveAddr: '浙江省杭州市余杭区五常大道',
-    receiveDetailAddr: '西溪花园竞舟苑1单元',
-    postAddr: '浙江省杭州市余杭区五常大道',
-    postDetailAddr: '西溪花园竞舟苑1单元',
-    date: '2016-11-09 11:11:11'
-  }]
+
+  detailVm.result = orderSrv.getSingleItem();
+
   detailVm.cancel = cancel;
+
   function cancel(){
     $modalInstance.dismiss('cancel');
   }

@@ -20,15 +20,43 @@ function customerCtrl($filter, $modal, appSrv, NgTableParams){
     { sref: 'customer.manage', path: '/customer/manage', title: '客户管理', isActive: true },
     { sref: 'customer.verify', path: '/customer/verify', title: '客户审批', isActive: false }
   ];
+  var mAttr = [
+    {state: 'pending', state_title: '待审批', class: 'text-warning', option: ['修改']},
+    {state: 'failing', state_title: '未通过审批', class: 'text-danger', option: ['修改']},
+    {state: 'approve', state_title: '通过审批', class: 'text-success', option: ['录入订单']},
+    {state: 'uncommitted', state_title: '未提交', class: 'text-danger', option: ['修改', '提交审批']}
+  ];
+  var vAttr = [
+    {state: 'pending', state_title: '待审批', class: 'text-warning', option: ['通过', '拒绝']},
+    {state: 'failing', state_title: '未通过审批', class: 'text-danger', option: []},
+    {state: 'approve', state_title: '通过审批', class: 'text-success', option: []},
+    {state: 'uncommitted', state_title: '未通过签收', class: 'text-danger', option: []}
+  ];
+
+  checkUrl();
+  setExtraAttr(customerVm.serverList, mAttr, 'customerM_state');
+  setExtraAttr(customerVm.serverList, vAttr, 'customerV_state');
+
   customerVm.tableParams = new NgTableParams(
     { count: 7 },
     { counts: [5], dataset: customerVm.serverList}
   );
 
-  checkUrl();
-
   function checkUrl(){
     appSrv.checkUrl(customerVm.navGroup);
+  }
+
+  function setExtraAttr(dataList, array, stateTxt){
+    for(var i=0; i<dataList.length; i++){
+      for(var j=0; j<array.length; j++){
+        if(dataList[i][stateTxt] == array[j].state){
+          dataList[i][stateTxt] = array[j].state_title;
+          dataList[i][stateTxt+'_class'] = array[j].class;
+          dataList[i][stateTxt+'_option'] = array[j].option;
+        }
+      }
+    }
+    return dataList;
   }
 
   function switchTabNav(index){
@@ -73,28 +101,10 @@ function addCtrl($modalInstance, $timeout, appSrv, toastr){
 
 }
 
-function ctDetailCtrl($modalInstance){
+function ctDetailCtrl($modalInstance, customerSrv){
   var detailVm = this;
   detailVm.cancel = cancel;
-  detailVm.result = [{
-    name: 'zzyq',
-    phone: '15757118202',
-    type: '企业用户',
-    channel: '淘宝',
-    product: 'Weker W1',
-    state: '待审批',
-    direction: '右内',
-    sohe: '有',
-    amount: 10,
-    width: 12,
-    height: 24,
-    remark: '备注备注备注备注备注备注备注备注备注备注备注备注',
-    receiveAddr: '浙江省杭州市余杭区五常大道',
-    receiveDetailAddr: '西溪花园竞舟苑1单元',
-    postAddr: '浙江省杭州市余杭区五常大道',
-    postDetailAddr: '西溪花园竞舟苑1单元',
-    date: '2016-11-09 11:11:11'
-  }];
+  detailVm.result = customerSrv.getSingleItem();
   function cancel(){
     $modalInstance.dismiss('cancel');
   }

@@ -1,11 +1,11 @@
 /**
  * Created by zhongyuqiang on 16/11/7.
  */
-angular.module('customerApi', [])
-  .factory('customerSrv', customerSrv);
+angular.module('orderApi', [])
+  .factory('orderSrv', orderSrv);
 
-customerSrv.$inject = ['$q'];
-function customerSrv($q){
+orderSrv.$inject = ['$q'];
+function orderSrv($q){
   function getSingleItem(){
     return [{
       name: 'zzyq',

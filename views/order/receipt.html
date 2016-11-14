@@ -37,7 +37,7 @@
     <th>购买数量</th>
     <th>产品参数</th>
     <th>状态</th>
-    <th>操作</th>
+    <th class="text-center">操作</th>
     </thead>
     <tr ng-repeat="item in $data">
       <td>{{$index}}</td>
@@ -51,8 +51,12 @@
         <div>开门方向: {{item.param.direction}}</div>
         <div>锁体导片: {{item.param.daopian}}</div>
       </td>
-      <td>{{item.orderR_state}}</td>
-      <td><a href="javascript:;" ng-click="orderVm.openModal('modal-detail', 'order.detailCtrl as detailVm')">详情</a></td>
+      <td class="{{item.orderR_state_class}}">{{item.orderR_state}}</td>
+      <td class="text-center">
+        <a href="javascript:;" ng-click="orderVm.openModal('modal-detail', 'order.detailCtrl as detailVm')">详情</a>
+        <span class="text-success cursor-pointer" ng-if="item.orderR_state_option[0]">通过 </span>
+        <span class="text-danger cursor-pointer" ng-if="item.orderR_state_option[1]">拒绝</span>
+      </td>
     </tr>
   </table>
 </div>
