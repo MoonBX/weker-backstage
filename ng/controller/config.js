@@ -7,7 +7,7 @@ angular.module('configMdl', [])
   .controller('config.addCtrl', addCtrl)
   .controller('config.carouselCtrl', carouselCtrl);
 
-function configCtrl($location, $scope, $modal){
+function configCtrl($location, $scope, $modal, appSrv){
   var configVm = this;
   configVm.infoList = {
     group: [
@@ -24,26 +24,15 @@ function configCtrl($location, $scope, $modal){
 
   configVm.switchTabNav = switchTabNav;
   configVm.openModal = openModal;
+  configVm.currentNav = {};
 
   checkUrl();
   function checkUrl(){
-    var path = $location.path();
-    var arr = configVm.infoList.group;
-    for(var i=0;i<arr.length;i++){
-      configVm.infoList.group[i].isActive = false;
-      if(path === arr[i].path){
-        configVm.infoList.group[i].isActive = true
-      }
-    }
+    appSrv.checkUrl(configVm.infoList.group);
   }
 
   function switchTabNav(index){
-    configVm.currentNav = configVm.infoList.group[index];
-    for(var i=0;i<configVm.infoList.group.length;i++){
-      if(index != i)
-        configVm.infoList.group[i].isActive = false;
-      configVm.currentNav.isActive = true;
-    }
+    appSrv.switchTabNav(configVm.currentNav, configVm.infoList.group, index);
   }
 
   function openModal(template, controller){

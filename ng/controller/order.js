@@ -5,7 +5,7 @@ angular.module('orderMdl', [])
   .controller('orderCtrl', orderCtrl)
   .controller('order.detailCtrl', odDetailCtrl)
 
-function orderCtrl($scope, $location, $modal, customerSrv, NgTableParams){
+function orderCtrl($modal, customerSrv, appSrv, NgTableParams){
   var orderVm = this;
   var serverList = customerSrv.getProduct();
   orderVm.infoList = {
@@ -21,28 +21,16 @@ function orderCtrl($scope, $location, $modal, customerSrv, NgTableParams){
 
   orderVm.switchTabNav = switchTabNav;
   orderVm.openModal = openModal;
-  //orderVm.callServerItems = callServerItems;
+  orderVm.currentNav = {};
   orderVm.tableParams = new NgTableParams({ count: 7 }, { counts: [5], dataset: serverList});
 
   checkUrl();
   function checkUrl(){
-    var path = $location.path();
-    var arr = orderVm.infoList.group;
-    for(var i=0;i<arr.length;i++){
-      orderVm.infoList.group[i].isActive = false;
-      if(path === arr[i].path){
-        orderVm.infoList.group[i].isActive = true
-      }
-    }
+    appSrv.checkUrl(orderVm.infoList.group);
   }
 
   function switchTabNav(index){
-    orderVm.currentNav = orderVm.infoList.group[index];
-    for(var i=0;i<orderVm.infoList.group.length;i++){
-      if(index != i)
-        orderVm.infoList.group[i].isActive = false;
-      orderVm.currentNav.isActive = true;
-    }
+    appSrv.switchTabNav(orderVm.currentNav, orderVm.infoList.group, index);
   }
 
   function openModal(template, controller){

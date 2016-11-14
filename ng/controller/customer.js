@@ -7,7 +7,7 @@ angular.module('customerMdl', [])
   .controller('customer.detailCtrl', ctDetailCtrl)
   .controller('customer.rejectCtrl', rejectCtrl);
 
-function customerCtrl($scope, $filter, $location, $modal, customerSrv, NgTableParams){
+function customerCtrl($filter, $modal, customerSrv, appSrv, NgTableParams){
   var serverList = customerSrv.getProduct();
   var customerVm = this;
 
@@ -37,23 +37,11 @@ function customerCtrl($scope, $filter, $location, $modal, customerSrv, NgTablePa
   }
 
   function checkUrl(){
-    var path = $location.path();
-    var arr = customerVm.infoList.group;
-    for(var i=0;i<arr.length;i++){
-      customerVm.infoList.group[i].isActive = false;
-      if(path === arr[i].path){
-        customerVm.infoList.group[i].isActive = true
-      }
-    }
+    appSrv.checkUrl(customerVm.infoList.group);
   }
 
   function switchTabNav(index){
-    customerVm.currentNav = customerVm.infoList.group[index];
-    for(var i=0;i<customerVm.infoList.group.length;i++){
-      if(index != i)
-        customerVm.infoList.group[i].isActive = false;
-      customerVm.currentNav.isActive = true;
-    }
+    appSrv.switchTabNav(customerVm.currentNav, customerVm.infoList.group, index);
   }
 
   function openModal(template, controller){
@@ -114,7 +102,7 @@ function ctDetailCtrl($modalInstance){
     postAddr: '浙江省杭州市余杭区五常大道',
     postDetailAddr: '西溪花园竞舟苑1单元',
     date: '2016-11-09 11:11:11'
-  }]
+  }];
   function cancel(){
     $modalInstance.dismiss('cancel');
   }

@@ -5,7 +5,7 @@ angular.module('serviceMdl', [])
   .controller('serviceCtrl', serviceCtrl)
   .controller('service.detailCtrl', svDetailCtrl)
 
-function serviceCtrl($location, $modal, $scope, customerSrv, NgTableParams){
+function serviceCtrl($location, $modal, $scope, appSrv, customerSrv, NgTableParams){
   var serviceVm = this;
   var serverList = customerSrv.getProduct();
   serviceVm.infoList = {
@@ -21,27 +21,16 @@ function serviceCtrl($location, $modal, $scope, customerSrv, NgTableParams){
   serviceVm.switchTabNav = switchTabNav;
   serviceVm.openModal = openModal;
   serviceVm.tableParams = new NgTableParams({ count: 7 }, { counts: [5], dataset: serverList});
+  serviceVm.currentNav = {};
 
   checkUrl();
 
   function checkUrl(){
-    var path = $location.path();
-    var arr = serviceVm.infoList.group;
-    for(var i=0;i<arr.length;i++){
-      serviceVm.infoList.group[i].isActive = false;
-      if(path === arr[i].path){
-        serviceVm.infoList.group[i].isActive = true
-      }
-    }
+    appSrv.checkUrl(serviceVm.infoList.group);
   }
 
   function switchTabNav(index){
-    serviceVm.currentNav = serviceVm.infoList.group[index];
-    for(var i=0;i<serviceVm.infoList.group.length;i++){
-      if(index != i)
-        serviceVm.infoList.group[i].isActive = false;
-      serviceVm.currentNav.isActive = true;
-    }
+    appSrv.switchTabNav(serviceVm.currentNav, serviceVm.infoList.group, index);
   }
 
   function openModal(template, controller){

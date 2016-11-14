@@ -302,3 +302,18 @@ nav ul.nav li a {
   position: relative;
   top: 13px;
 }
+
+.ta-toolbar .btn-group{
+  margin-bottom: 10px;
+}
+.ta-toolbar .btn-group:nth-child(1){
+  margin-top: 10px;
+}
+.ta-toolbar{
+  padding:5px 0;
+}
+.ta-root.focussed > .ta-scroll-window.form-control {
+  outline: 0;
+  border-color: #acb2b8;
+  transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}

@@ -10,8 +10,9 @@ angular.module('app', [
   'mgcrea.ngStrap.datepicker',
   'ui.select2',
   'ngAnimate',
-  //'smart-table',
   'ngTable',
+  'toastr',
+  'textAngular',
   'mainMdl',
   'customerMdl',
   'orderMdl',
@@ -19,20 +20,25 @@ angular.module('app', [
   'configMdl',
   'logMdl',
   'accountMdl',
-  'customerApi',
-  'toastr'
+  'appApi',
+  'customerApi'
 ]);
 
 angular.module('app')
   .config(config)
   .run(initConfig);
 
-function initConfig( uiSelect2Config, toastrConfig){
+function initConfig( uiSelect2Config, toastrConfig, taOptions){
   uiSelect2Config.minimumResultsForSearch = -1;
   angular.extend(toastrConfig, {
     timeOut: 1500,
     //timeout
-  })
+  });
+  taOptions.toolbar = [
+    ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'p', 'pre', 'quote'],
+    ['bold', 'italics', 'underline', 'ul', 'ol', 'redo', 'undo'],
+    ['justifyLeft', 'justifyCenter', 'justifyRight', 'indent', 'outdent']
+  ];
 }
 
 function config($stateProvider, $urlRouterProvider){

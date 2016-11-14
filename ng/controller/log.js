@@ -4,7 +4,7 @@
 angular.module('logMdl', [])
   .controller('logCtrl', logCtrl)
 
-function logCtrl($location, $scope, NgTableParams){
+function logCtrl($location, $scope, appSrv, NgTableParams){
   var logVm = this;
   logVm.infoList = {
     group: [
@@ -25,26 +25,15 @@ function logCtrl($location, $scope, NgTableParams){
   ]
 
   logVm.switchTabNav = switchTabNav;
+  logVm.currentNav = {};
   logVm.tableParams = new NgTableParams({ count: 7 }, { counts: [5], dataset: serverList});
 
   checkUrl();
   function checkUrl(){
-    var path = $location.path();
-    var arr = logVm.infoList.group;
-    for(var i=0;i<arr.length;i++){
-      logVm.infoList.group[i].isActive = false;
-      if(path === arr[i].path){
-        logVm.infoList.group[i].isActive = true
-      }
-    }
+    appSrv.checkUrl(logVm.infoList.group);
   }
 
   function switchTabNav(index){
-    logVm.currentNav = logVm.infoList.group[index];
-    for(var i=0;i<logVm.infoList.group.length;i++){
-      if(index != i)
-        logVm.infoList.group[i].isActive = false;
-      logVm.currentNav.isActive = true;
-    }
+    appSrv.switchTabNav(logVm.currentNav, logVm.infoList.group, index);
   }
 }
