@@ -76,8 +76,9 @@
       </td>
       <td class="{{item.customerM_state_class}}">{{item.customerM_state}}</td>
       <td>
-        <a href="javascript:;">{{item.customerM_state_option[0]}}</a>&nbsp;&nbsp;
-        <a href="javascript:;" ng-if="item.customerM_state_option[1]">提交审批</a>
+        <a href="javascript:;" ng-if="item.customerM_state == '通过审批'">录入订单</a>
+        <a href="javascript:;" ng-if="item.customerM_state == '待审批'||item.customerM_state == '未通过审批'||item.customerM_state == '未提交'">修改</a>&nbsp;&nbsp;
+        <a href="javascript:;" ng-if="item.customerM_state == '未提交'">提交审批</a>
       </td>
     </tr>
   </table>

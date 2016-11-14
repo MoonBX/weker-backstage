@@ -54,7 +54,7 @@
       <td class="{{item.orderV_state_class}}">{{item.orderV_state}}</td>
       <td>
         <a href="javascript:;">详情</a>&nbsp;&nbsp;
-        <a href="javascript:;" ng-click="orderVm.openModal('modal-odd', 'order.detailCtrl as detailVm')" ng-if="item.orderV_state_option[0]">快递单号</a>
+        <a href="javascript:;" ng-click="orderVm.openModal('modal-odd', 'order.detailCtrl as detailVm')" ng-if="item.orderV_state == '待出货'">快递单号</a>
       </td>
     </tr>
   </table>

@@ -54,8 +54,8 @@
       <td class="{{item.orderR_state_class}}">{{item.orderR_state}}</td>
       <td class="text-center">
         <a href="javascript:;" ng-click="orderVm.openModal('modal-detail', 'order.detailCtrl as detailVm')">详情</a>
-        <span class="text-success cursor-pointer" ng-if="item.orderR_state_option[0]">通过 </span>
-        <span class="text-danger cursor-pointer" ng-if="item.orderR_state_option[1]">拒绝</span>
+        <span class="text-success cursor-pointer" ng-if="item.orderR_state == '待签收'">通过 </span>
+        <span class="text-danger cursor-pointer" ng-if="item.orderR_state == '待签收'">拒绝</span>
       </td>
     </tr>
   </table>
