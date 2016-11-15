@@ -84,6 +84,13 @@
 </div>
 <div class="page-skip pull-left">
   <span>跳转至</span>
-  <input type="number" class="form-control" id="pageBinding" min="1" ng-model="serviceVm.tableParams.page" ng-model-options="{ getterSetter: true }" style="width:80px;display: inline-block;">
+  <input type="number" class="form-control" id="pageBinding"
+         ng-model="serviceVm.page"
+         style="width:80px;display: inline-block;">
   <span>页</span>
+  <button class="btn btn-success btn-sm"
+          style="margin-left: 5px;margin-top: -1px;"
+          ng-click="serviceVm.changePage(serviceVm.page)">
+    确定
+  </button>
 </div>
