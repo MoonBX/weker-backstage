@@ -5,10 +5,10 @@ angular.module('orderMdl', [])
   .controller('orderCtrl', orderCtrl)
   .controller('order.detailCtrl', odDetailCtrl)
 
-function orderCtrl($modal, appSrv, NgTableParams){
+function orderCtrl($modal, $filter, appSrv, NgTableParams){
   var orderVm = this;
 
-  orderVm.serverList = appSrv.getProduct();
+  orderVm.serverFilterList = orderVm.serverList = appSrv.getProduct();
   orderVm.navGroup = [
     {sref: 'order.receipt', path:'/order/receipt', title: '订单签收', isActive: true},
     {sref: 'order.validate', path:'/order/validate', title: '订单校验', isActive: false}
@@ -17,6 +17,7 @@ function orderCtrl($modal, appSrv, NgTableParams){
 
   orderVm.switchTabNav = switchTabNav;
   orderVm.openModal = openModal;
+  orderVm.updateFilteredList = updateFilteredList;
   orderVm.currentNav = {};
   var rAttr = [
     {state: 'pending', state_title: '待签收', class: 'text-warning', option: ['通过', '拒绝']},
@@ -29,12 +30,12 @@ function orderCtrl($modal, appSrv, NgTableParams){
   ];
 
   checkUrl();
-  setExtraAttr(orderVm.serverList, rAttr, 'orderR_state');
-  setExtraAttr(orderVm.serverList, vAttr, 'orderV_state');
+  appSrv.setExtraAttr(orderVm.serverList, rAttr, 'orderR_state');
+  appSrv.setExtraAttr(orderVm.serverList, vAttr, 'orderV_state');
 
   orderVm.tableParams = new NgTableParams(
     { count: 7 },
-    { counts: [5], dataset: orderVm.serverList}
+    { counts: [5], dataset: orderVm.serverFilterList}
   );
 
   function checkUrl(){
@@ -52,17 +53,12 @@ function orderCtrl($modal, appSrv, NgTableParams){
     })
   }
 
-  function setExtraAttr(dataList, array, stateTxt){
-    for(var i=0; i<dataList.length; i++){
-      for(var j=0; j<array.length; j++){
-        if(dataList[i][stateTxt] == array[j].state){
-          dataList[i][stateTxt] = array[j].state_title;
-          dataList[i][stateTxt+'_class'] = array[j].class;
-          dataList[i][stateTxt+'_option'] = array[j].option;
-        }
-      }
-    }
-    return dataList;
+  function updateFilteredList(query) {
+    orderVm.serverFilterList = $filter("filter")(orderVm.serverList, query);
+    orderVm.tableParams = new NgTableParams(
+      { count: 7 },
+      { counts: [5], dataset: orderVm.serverFilterList}
+    );
   }
 }
 

@@ -1,36 +1,37 @@
 <div class="screen-box m-v-sm b-b p-v-sm">
   <form class="form-horizontal" role="form">
     <div class="form-group">
-      <label for="name" class="col-md-1 col-sm-4 control-label">客户姓名:</label>
-      <div class="col-md-2 col-sm-8">
-        <input type="text" class="form-control" id="name" placeholder="请填写客户姓名">
-      </div>
-      <label for="phoneNumber" class="col-md-1 col-sm-4 control-label">手机号码:</label>
-      <div class="col-md-5 col-sm-8">
-        <input type="number" class="form-control" id="phoneNumber" placeholder="请填写手机号码">
-      </div>
-      <div class="col-md-1">
-        <button class="btn btn-primary btn-sm">搜索</button>
+      <label for="name" class="col-md-1 col-sm-4 control-label">全局搜索:</label>
+      <div class="col-md-8 col-sm-8">
+        <input type="text" class="form-control" id="name"
+               placeholder="请填写客户姓名" ng-model="serviceVm.query"
+               ng-change="serviceVm.updateFilteredList(serviceVm.query)">
       </div>
     </div>
     <div class="form-group">
       <label class="col-md-1 col-sm-4 control-label">客户类型:</label>
       <div class="col-md-2 col-sm-8">
-        <select ui-select2 ng-model="type" data-placeholder="请选择类型">
+        <select ui-select2 ng-model="serviceVm.type"
+                data-placeholder="请选择类型"
+                ng-change="serviceVm.updateFilteredList(serviceVm.type)">
           <option value=""></option>
           <option ng-value="item" ng-repeat="item in serviceVm.infoList.type">{{item}}</option>
         </select>
       </div>
       <label class="col-md-1 col-sm-4 control-label">客户渠道:</label>
       <div class="col-md-2 col-sm-8">
-        <select ui-select2 ng-model="channel" data-placeholder="请选择渠道">
+        <select ui-select2 ng-model="serviceVm.channel"
+                data-placeholder="请选择渠道"
+                ng-change="serviceVm.updateFilteredList(serviceVm.channel)">
           <option value=""></option>
           <option ng-value="item" ng-repeat="item in serviceVm.infoList.channel">{{item}}</option>
         </select>
       </div>
       <label class="col-md-1 col-sm-4 control-label">购买产品:</label>
       <div class="col-md-2 col-sm-8">
-        <select ui-select2 ng-model="product" data-placeholder="请选择产品">
+        <select ui-select2 ng-model="serviceVm.product"
+                data-placeholder="请选择产品"
+                ng-change="serviceVm.updateFilteredList(serviceVm.product)">>
           <option value=""></option>
           <option ng-value="item" ng-repeat="item in serviceVm.infoList.product">{{item}}</option>
         </select>

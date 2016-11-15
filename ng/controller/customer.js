@@ -7,14 +7,15 @@ angular.module('customerMdl', [])
   .controller('customer.detailCtrl', ctDetailCtrl)
   .controller('customer.rejectCtrl', rejectCtrl);
 
-function customerCtrl($filter, $modal, appSrv, NgTableParams){
+function customerCtrl($scope, $filter, $modal, appSrv, NgTableParams){
   var customerVm = this;
 
   customerVm.switchTabNav = switchTabNav;
   customerVm.openModal = openModal;
+  customerVm.updateFilteredList = updateFilteredList;
   customerVm.currentNav = {};
 
-  customerVm.serverList = appSrv.getProduct();
+  customerVm.serverFilterList = customerVm.serverList = appSrv.getProduct();
   customerVm.infoList = appSrv.getInfoList();
   customerVm.navGroup = [
     { sref: 'customer.manage', path: '/customer/manage', title: '客户管理', isActive: true },
@@ -34,29 +35,17 @@ function customerCtrl($filter, $modal, appSrv, NgTableParams){
   ];
 
   checkUrl();
-  setExtraAttr(customerVm.serverList, mAttr, 'customerM_state');
-  setExtraAttr(customerVm.serverList, vAttr, 'customerV_state');
+  appSrv.setExtraAttr(customerVm.serverList, mAttr, 'customerM_state');
+  appSrv.setExtraAttr(customerVm.serverList, vAttr, 'customerV_state');
+
 
   customerVm.tableParams = new NgTableParams(
     { count: 7 },
-    { counts: [5], dataset: customerVm.serverList}
+    { counts: [5], dataset: customerVm.serverFilterList}
   );
 
   function checkUrl(){
     appSrv.checkUrl(customerVm.navGroup);
-  }
-
-  function setExtraAttr(dataList, array, stateTxt){
-    for(var i=0; i<dataList.length; i++){
-      for(var j=0; j<array.length; j++){
-        if(dataList[i][stateTxt] == array[j].state){
-          dataList[i][stateTxt] = array[j].state_title;
-          dataList[i][stateTxt+'_class'] = array[j].class;
-          dataList[i][stateTxt+'_option'] = array[j].option;
-        }
-      }
-    }
-    return dataList;
   }
 
   function switchTabNav(index){
@@ -69,6 +58,16 @@ function customerCtrl($filter, $modal, appSrv, NgTableParams){
       controller: controller
     })
   }
+
+  function updateFilteredList(query) {
+    customerVm.serverFilterList = $filter("filter")(customerVm.serverList, query);
+    customerVm.tableParams = new NgTableParams(
+      { count: 7 },
+      { counts: [5], dataset: customerVm.serverFilterList}
+    );
+  }
+
+  //$scope.$watch('customerVm.serverFilterList', loginStateChange);
 
 }
 

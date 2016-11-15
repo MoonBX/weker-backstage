@@ -1,13 +1,26 @@
 <div class="screen-box m-v-sm b-b p-v-sm">
   <form class="form-horizontal" role="form">
+
     <div class="form-group">
+
+      <label for="name" class="col-md-1 col-sm-4 control-label">全局搜索:</label>
+      <div class="col-md-5 col-sm-8">
+        <input type="text" class="form-control" id="name"
+               placeholder="请填写客户信息"
+               ng-model="orderVm.query"
+               ng-change="orderVm.updateFilteredList(orderVm.query)">
+      </div>
+
       <label class="col-md-1 col-sm-4 control-label">购买产品:</label>
       <div class="col-md-2 col-sm-8">
         <select ui-select2 ng-model="product" data-placeholder="请选择产品">
           <option value=""></option>
-          <option ng-value="item" ng-repeat="item in orderVm.infoList.product">{{item}}</option>
+          <option ng-value="item" ng-repeat="item in orderVm.infoList.product">
+            {{item}}
+          </option>
         </select>
       </div>
+
       <label class="col-md-1 col-sm-4 control-label" style="width: 7%">状态:</label>
       <div class="col-md-2 col-sm-8">
         <select ui-select2 ng-model="state" data-placeholder="请选择状态">
@@ -15,16 +28,12 @@
           <option ng-value="item" ng-repeat="item in orderVm.infoList.orderR_state">{{item}}</option>
         </select>
       </div>
-      <label for="name" class="col-md-1 col-sm-4 control-label">全局搜索:</label>
-      <div class="col-md-3 col-sm-8">
-        <input type="text" class="form-control" id="name" placeholder="请填写客户信息">
-      </div>
-      <div class="col-md-1">
-        <button class="btn btn-primary btn-sm">搜索</button>
-      </div>
+
     </div>
+
   </form>
 </div>
+
 <div class="table-box p-v-sm">
   <table ng-table="orderVm.tableParams" class="table table-striped wk-table">
     <thead>
@@ -60,6 +69,7 @@
     </tr>
   </table>
 </div>
+
 <div class="page-skip pull-left">
   <span>跳转至</span>
   <input type="number" class="form-control" id="pageBinding" min="1" ng-model="orderVm.tableParams.page" ng-model-options="{ getterSetter: true }" style="width:80px;display: inline-block;">

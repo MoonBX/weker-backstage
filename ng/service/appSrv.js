@@ -91,11 +91,25 @@ function appSrv($q, $location, $http){
     return defer.promise;
   }
 
+  function setExtraAttr(dataList, array, stateTxt){
+    for(var i=0; i<dataList.length; i++){
+      for(var j=0; j<array.length; j++){
+        if(dataList[i][stateTxt] == array[j].state){
+          dataList[i][stateTxt] = array[j].state_title;
+          dataList[i][stateTxt+'_class'] = array[j].class;
+          dataList[i][stateTxt+'_option'] = array[j].option;
+        }
+      }
+    }
+    return dataList;
+  }
+
   return {
     checkUrl: checkUrl,
     switchTabNav: switchTabNav,
     getInfoList: getInfoList,
     getProduct: getProduct,
-    getAddress: getAddress
+    getAddress: getAddress,
+    setExtraAttr: setExtraAttr
   }
 }
