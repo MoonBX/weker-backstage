@@ -8,17 +8,10 @@ angular.module('orderMdl', [])
 function orderCtrl($modal, $filter, appSrv, NgTableParams){
   var orderVm = this;
 
-  orderVm.serverFilterList = orderVm.serverList = appSrv.getProduct();
   orderVm.navGroup = [
     {sref: 'order.receipt', path:'/order/receipt', title: '订单签收', isActive: true},
     {sref: 'order.validate', path:'/order/validate', title: '订单校验', isActive: false}
   ];
-  orderVm.infoList = appSrv.getInfoList();
-
-  orderVm.switchTabNav = switchTabNav;
-  orderVm.openModal = openModal;
-  orderVm.updateFilteredList = updateFilteredList;
-  orderVm.currentNav = {};
   var rAttr = [
     {state: 'pending', state_title: '待签收', class: 'text-warning', option: ['通过', '拒绝']},
     {state: 'failing', state_title: '未通过签收', class: 'text-danger', option: []},
@@ -28,6 +21,15 @@ function orderCtrl($modal, $filter, appSrv, NgTableParams){
     {state: 'shipping', state_title: '待出货', class: 'text-warning', option: ['快递单号']},
     {state: 'shipped', state_title: '已出货', class: 'text-success', option: []}
   ];
+  orderVm.serverFilterList = orderVm.serverList = appSrv.getProduct();
+  orderVm.infoList = appSrv.getInfoList();
+  orderVm.currentNav = {};
+  orderVm.page = 1;
+
+  orderVm.switchTabNav = switchTabNav;
+  orderVm.openModal = openModal;
+  orderVm.updateFilteredList = updateFilteredList;
+  orderVm.changePage = changePage;
 
   checkUrl();
   appSrv.setExtraAttr(orderVm.serverList, rAttr, 'orderR_state');
@@ -37,6 +39,10 @@ function orderCtrl($modal, $filter, appSrv, NgTableParams){
     { count: 7 },
     { counts: [5], dataset: orderVm.serverFilterList}
   );
+
+  function changePage(nextPage){
+    orderVm.tableParams.page(nextPage);
+  }
 
   function checkUrl(){
     appSrv.checkUrl(orderVm.navGroup);

@@ -29,6 +29,7 @@ function logCtrl($location, $scope, appSrv, NgTableParams){
   logVm.tableParams = new NgTableParams({ count: 7 }, { counts: [5], dataset: serverList});
 
   checkUrl();
+
   function checkUrl(){
     appSrv.checkUrl(logVm.infoList.group);
   }

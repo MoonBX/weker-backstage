@@ -15,7 +15,7 @@
 }
 .position-right{
   margin-top: 12px;
-  padding-left: 230px;
+  /*padding-left: 230px;*/
   margin-left: 2px;
   margin-right: 0;
 }
@@ -304,7 +304,7 @@ nav ul.nav li a {
 
 /*page*/
 .page-skip{
-  width: 150px;
+  width: 200px;
   position: relative;
   top: 13px;
 }

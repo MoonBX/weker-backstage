@@ -10,13 +10,6 @@ angular.module('customerMdl', [])
 function customerCtrl($filter, $modal, appSrv, NgTableParams){
   var customerVm = this;
 
-  customerVm.switchTabNav = switchTabNav;
-  customerVm.openModal = openModal;
-  customerVm.updateFilteredList = updateFilteredList;
-  customerVm.currentNav = {};
-
-  customerVm.serverFilterList = customerVm.serverList = appSrv.getProduct();
-  customerVm.infoList = appSrv.getInfoList();
   customerVm.navGroup = [
     { sref: 'customer.manage', path: '/customer/manage', title: '客户管理', isActive: true },
     { sref: 'customer.verify', path: '/customer/verify', title: '客户审批', isActive: false }
@@ -33,16 +26,28 @@ function customerCtrl($filter, $modal, appSrv, NgTableParams){
     {state: 'approve', state_title: '通过审批', class: 'text-success'},
     {state: 'uncommitted', state_title: '未通过签收', class: 'text-danger'}
   ];
+  customerVm.serverFilterList = customerVm.serverList = appSrv.getProduct();
+  customerVm.infoList = appSrv.getInfoList();
+  customerVm.currentNav = {};
+  customerVm.page = 1;
+
+  customerVm.switchTabNav = switchTabNav;
+  customerVm.openModal = openModal;
+  customerVm.updateFilteredList = updateFilteredList;
+  customerVm.changePage = changePage;
 
   checkUrl();
   appSrv.setExtraAttr(customerVm.serverList, mAttr, 'customerM_state');
   appSrv.setExtraAttr(customerVm.serverList, vAttr, 'customerV_state');
 
-
   customerVm.tableParams = new NgTableParams(
     { count: 7 },
     { counts: [5], dataset: customerVm.serverFilterList}
   );
+
+  function changePage(nextPage){
+    customerVm.tableParams.page(nextPage);
+  }
 
   function checkUrl(){
     appSrv.checkUrl(customerVm.navGroup);
@@ -73,6 +78,7 @@ function customerCtrl($filter, $modal, appSrv, NgTableParams){
 
 function addCtrl($modalInstance, $timeout, appSrv, toastr){
   var addVm = this;
+
   addVm.infoList = appSrv.getInfoList();
 
   addVm.cancel = cancel;

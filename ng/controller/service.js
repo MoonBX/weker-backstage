@@ -18,18 +18,24 @@ function serviceCtrl($modal, $filter, appSrv, NgTableParams){
   serviceVm.serverFilterList = serviceVm.serverList = appSrv.getProduct();
   serviceVm.infoList = appSrv.getInfoList();
   serviceVm.currentNav = {};
+  serviceVm.page = 1;
 
   serviceVm.switchTabNav = switchTabNav;
   serviceVm.openModal = openModal;
   serviceVm.updateFilteredList = updateFilteredList;
+  serviceVm.changePage = changePage;
+
+  checkUrl();
+  appSrv.setExtraAttr(serviceVm.serverList, attr, 'service_state');
+
   serviceVm.tableParams = new NgTableParams(
     { count: 7 },
     { counts: [5], dataset: serviceVm.serverFilterList}
   );
 
-
-  checkUrl();
-  appSrv.setExtraAttr(serviceVm.serverList, attr, 'service_state');
+  function changePage(nextPage){
+    serviceVm.tableParams.page(nextPage);
+  }
 
   function checkUrl(){
     appSrv.checkUrl(serviceVm.navGroup);
