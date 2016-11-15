@@ -7,7 +7,7 @@ angular.module('customerMdl', [])
   .controller('customer.detailCtrl', ctDetailCtrl)
   .controller('customer.rejectCtrl', rejectCtrl);
 
-function customerCtrl($scope, $filter, $modal, appSrv, NgTableParams){
+function customerCtrl($filter, $modal, appSrv, NgTableParams){
   var customerVm = this;
 
   customerVm.switchTabNav = switchTabNav;
@@ -22,16 +22,16 @@ function customerCtrl($scope, $filter, $modal, appSrv, NgTableParams){
     { sref: 'customer.verify', path: '/customer/verify', title: '客户审批', isActive: false }
   ];
   var mAttr = [
-    {state: 'pending', state_title: '待审批', class: 'text-warning', option: ['修改']},
-    {state: 'failing', state_title: '未通过审批', class: 'text-danger', option: ['修改']},
-    {state: 'approve', state_title: '通过审批', class: 'text-success', option: ['录入订单']},
-    {state: 'uncommitted', state_title: '未提交', class: 'text-danger', option: ['修改', '提交审批']}
+    {state: 'pending', state_title: '待审批', class: 'text-warning'},
+    {state: 'failing', state_title: '未通过审批', class: 'text-danger'},
+    {state: 'approve', state_title: '通过审批', class: 'text-success'},
+    {state: 'uncommitted', state_title: '未提交', class: 'text-danger'}
   ];
   var vAttr = [
-    {state: 'pending', state_title: '待审批', class: 'text-warning', option: ['通过', '拒绝']},
-    {state: 'failing', state_title: '未通过审批', class: 'text-danger', option: []},
-    {state: 'approve', state_title: '通过审批', class: 'text-success', option: []},
-    {state: 'uncommitted', state_title: '未通过签收', class: 'text-danger', option: []}
+    {state: 'pending', state_title: '待审批', class: 'text-warning'},
+    {state: 'failing', state_title: '未通过审批', class: 'text-danger'},
+    {state: 'approve', state_title: '通过审批', class: 'text-success'},
+    {state: 'uncommitted', state_title: '未通过签收', class: 'text-danger'}
   ];
 
   checkUrl();
