@@ -20,6 +20,8 @@ angular.module('app', [
   'configMdl',
   'logMdl',
   'accountMdl',
+  'deviceMdl',
+  'propertyMdl',
   'appApi',
   'customerApi',
   'orderApi'
@@ -166,6 +168,37 @@ function config($stateProvider, $urlRouterProvider){
       controller: "accountCtrl",
       controllerAs: "accountVm"
     })
+    .state('property', {
+      url: '/property',
+      templateUrl: 'views/property/home.html',
+      controller: 'propertyCtrl',
+      controllerAs: 'propertyVm'
+    })
+    .state('property.village', {
+      url: '/village',
+      templateUrl: 'views/property/village.html',
+      controller: 'propertyCtrl',
+      controllerAs: 'propertyVm'
+    })
+    .state('device', {
+      url: '/device',
+      templateUrl: 'views/device/home.html',
+      controller: 'deviceCtrl',
+      controllerAs: 'deviceVm'
+    })
+    .state('device.info', {
+      url: '/info',
+      templateUrl: 'views/device/info.html',
+      controller: 'deviceCtrl',
+      controllerAs: 'deviceVm'
+    })
+    .state('device.maintain', {
+      url: '/maintain',
+      templateUrl: 'views/device/maintain.html',
+      controller: 'deviceCtrl',
+      controllerAs: 'deviceVm'
+    })
+
 
 
   //$sceDelegateProvider.resourceUrlWhitelist([

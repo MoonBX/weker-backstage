@@ -48,6 +48,14 @@
   background-color: #fff;
   color: #23b2ee;
 }
+.bg-dark .nav>li:hover,
+.bg-dark .nav>li:focus,
+.bg-dark .nav>li>a:hover,
+.bg-dark .nav>li>a:focus,
+.bg-dark .nav>li.active>a {
+  color: #f8f9fa;
+  background-color: #252f40;
+}
 .navbar-nav.navbar-right:last-child{
   margin-right: 10px;
 }

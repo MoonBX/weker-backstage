@@ -14,15 +14,15 @@ function appSrv($q, $location, $http){
     type: ['企业用户','个人用户', '内测用户'],
     channel: ['淘宝', '代理', '招募活动'],
     product: ['Weker W1', 'Weker W2', 'Weker T1', 'Weker T2'],
-    //customerM_state: ['待审批', '未通过审批', '通过审批', '未提交'],
+    //'待审批', '未通过审批', '通过审批', '未提交'
     customerM_state: ['pending', 'failing', 'approve', 'uncommitted'],
-    //customerV_state: ['待审批', '未通过审批', '通过审批', '未通过签收'],
+    //'待审批', '未通过审批', '通过审批', '未通过签收'
     customerV_state: ['pending', 'failing', 'approve', 'uncommitted'],
-    //orderR_state: ['待签收', '未通过签收', '通过签收'],
+    //'待签收', '未通过签收', '通过签收'
     orderR_state: ['pending', 'failing', 'approve'],
-    //orderV_state: ['待出货', '已出货'],
+    //'待出货', '已出货'
     orderV_state: ['shipping', 'shipped'],
-    //service_state: ['已出货', '安装中', '已安装'],
+    //'已出货', '安装中', '已安装'
     service_state: ['shipped', 'installing', 'installed'],
     direction: ['右内', '右外', '左内', '左外'],
     sohe: ['有', '无']

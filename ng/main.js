@@ -18,6 +18,8 @@ function mainCtl($scope, $location, $state) {
     //{title: '图片上传', subTitle:'Picture Upload', icon: '', sref: '', isActive: false},
     {title: '登陆日志', subTitle:'Login log', icon: 'fa-file-text-o', sref: 'log.record', path: 'log', isActive: false},
     {title: '账号管理', subTitle:'Account Management', icon: 'fa-user', sref: 'account.update', path: 'account', isActive: false},
+    {title: '物业管理', subTitle:'Property Management', icon: 'fa-home', sref: 'property.village', path: 'property', isActive: false},
+    {title: '设备管理', subTitle:'Device Management', icon: 'fa-key', sref: 'device.info', path: 'device', isActive: false}
   ];
   mainVm.currentNav = {title: '客户管理', subTitle:'Customer Management', icon: 'user', sref: '', path: 'customer', isActive: true};
   mainVm.asideCollapse = false;

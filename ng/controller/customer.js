@@ -84,8 +84,11 @@ function addCtrl($modalInstance, $timeout, appSrv, toastr){
   addVm.cancel = cancel;
   addVm.save = save;
   addVm.getAddress = getAddress;
+  //addVm.changeProvince = changeProvince;
+  //addVm.address = {};
 
   getAddress();
+
 
   function getAddress(){
     appSrv.getAddress().then(function(data){
