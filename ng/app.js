@@ -21,6 +21,7 @@ angular.module('app', [
   'logMdl',
   'accountMdl',
   'deviceMdl',
+  'deviceApi',
   'propertyMdl',
   'appApi',
   'customerApi',

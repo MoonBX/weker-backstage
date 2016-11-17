@@ -25,7 +25,16 @@ function appSrv($q, $location, $http){
     //'已出货', '安装中', '已安装'
     service_state: ['shipped', 'installing', 'installed'],
     direction: ['右内', '右外', '左内', '左外'],
-    sohe: ['有', '无']
+    sohe: ['有', '无'],
+    device_type: ['大门机', '单元机'],
+    device_version: ['1.0', '2.0', '3.0'],
+    maintainer: ['李工', '王工', '赵工'],
+    maintenance_state: ['unservice', 'servicing', 'serviced'],
+    device_state: ['在线', '离线'],
+    villa_type: ['高层', '洋房', '排屋'],
+    prop_company: ['绿城物业', '万达', '恒大'],
+    // '未覆盖', '覆盖中', '已覆盖'
+    prop_state: ['uncover', 'covering', 'covered']
   };
 
   function checkUrl(arr){
@@ -89,6 +98,16 @@ function appSrv($q, $location, $http){
         console.log(data);
       });
     return defer.promise;
+  }
+
+  function getDeviceList(){
+    var serverList = [];
+    var item = {};
+    for(var i=0; i<100; i++) {
+      item = {
+        name: arr.nameArr[Math.floor(Math.random() * arr.nameArr.length)],
+      }
+    }
   }
 
   function setExtraAttr(dataList, array, stateTxt){

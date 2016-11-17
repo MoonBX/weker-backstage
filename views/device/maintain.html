@@ -1,0 +1,97 @@
+<div class="screen-box m-v-sm b-b p-v-sm">
+  <form class="form-horizontal" role="form">
+    <div class="form-group">
+      <label for="name" class="col-md-1 col-sm-4 control-label">全局搜索:</label>
+      <div class="col-md-8 col-sm-8">
+        <input type="text" class="form-control" id="name"
+               placeholder="请填写报修人, 安装地址, 手机号等信息..."
+               ng-model="query"
+               ng-change="deviceVm.updateFilteredList(query)">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md-1 col-sm-4 control-label">登录时间:</label>
+      <div class="col-md-3 col-sm-8">
+        <input type="text" style="width: 100%;height: 32px;position: relative;top: 1px;padding-left: 6px;"
+               ng-model="dt"
+               data-date-format="yyyy-MM-dd"
+               data-date-type="number"
+               data-min-date="02/10/86"
+               data-max-date="today"
+               data-autoclose="1"
+               bs-datepicker
+               placeholder="请输入保修日期"
+               ng-change="deviceVm.updateFilteredListDate(dt)"
+        />
+      </div>
+      <label class="col-md-1 col-sm-4 control-label">维修人:</label>
+      <div class="col-md-3 col-sm-8">
+        <select ui-select2 ng-model="maintaner" data-placeholder="请选择维修人"
+                ng-change="deviceVm.updateFilteredList(maintaner)">
+          <option value=""></option>
+          <option ng-value="item" ng-repeat="item in deviceVm.infoList.maintainer">
+            {{item}}
+          </option>
+        </select>
+      </div>
+      <label class="col-md-1 col-sm-4 control-label">维修状态:</label>
+      <div class="col-md-2 col-sm-8">
+        <select ui-select2 ng-model="state" data-placeholder="请选择状态"
+                ng-change="deviceVm.updateFilteredList(state)">
+          <option value=""></option>
+          <option ng-value="item" ng-repeat="item in deviceVm.infoList.maintenance_state">
+            {{item}}
+          </option>
+        </select>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div class="table-box p-v-sm">
+  <table ng-table="deviceVm.tableParams" class="table table-striped wk-table">
+    <thead>
+    <th>设备名称</th>
+    <th>设备类型</th>
+    <th>版本</th>
+    <th>报修人</th>
+    <th>联系方式</th>
+    <th>安装地址</th>
+    <th>报修时间</th>
+    <th>报修内容</th>
+    <th>维修状态</th>
+    <th>维修人</th>
+    <th>联系方式</th>
+    <th>解决方案</th>
+    </thead>
+    <tr ng-repeat="item in $data">
+      <td>{{$index+1}}</td>
+      <td>{{item.device_type}}</td>
+      <td>{{item.device_version}}</td>
+      <td>{{item.applyer}}</td>
+      <td>{{item.applyer_phone}}</td>
+      <td>{{item.setup_Addr}}</td>
+      <td>{{item.apply_date}}</td>
+      <td><a href="javascript:;" ng-click="deviceVm.openModal('modal-repair','device.repairCtrl as repairVm')">查看</a></td>
+      <td>{{item.maintenance_state}}</td>
+      <td>{{item.maintainer}}</td>
+      <td>{{item.maintainer_phone}}</td>
+      <td>{{item.maintainer_content}}</td>
+    </tr>
+  </table>
+</div>
+
+<div class="page-skip pull-left">
+  <span>跳转至</span>
+  <input type="number" class="form-control"
+         id="pageBinding" min="1"
+         ng-model="deviceVm.page"
+         style="width:80px;display: inline-block;"
+  >
+  <span>页</span>
+  <button class="btn btn-success btn-sm"
+          style="margin-left: 5px;margin-top: -1px;"
+          ng-click="deviceVm.changePage(deviceVm.page)">
+    确定
+  </button>
+</div>

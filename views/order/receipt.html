@@ -13,7 +13,8 @@
 
       <label class="col-md-1 col-sm-4 control-label">购买产品:</label>
       <div class="col-md-2 col-sm-8">
-        <select ui-select2 ng-model="product" data-placeholder="请选择产品">
+        <select ui-select2 ng-model="product"
+                data-placeholder="请选择产品">
           <option value=""></option>
           <option ng-value="item" ng-repeat="item in orderVm.infoList.product">
             {{item}}
@@ -23,7 +24,8 @@
 
       <label class="col-md-1 col-sm-4 control-label" style="width: 7%">状态:</label>
       <div class="col-md-2 col-sm-8">
-        <select ui-select2 ng-model="state" data-placeholder="请选择状态">
+        <select ui-select2 ng-model="state" data-placeholder="请选择状态"
+        >
           <option value=""></option>
           <option ng-value="item" ng-repeat="item in orderVm.infoList.orderR_state">{{item}}</option>
         </select>

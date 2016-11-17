@@ -1,0 +1,72 @@
+<div class="screen-box m-v-sm b-b p-v-sm">
+  <form class="form-horizontal" role="form">
+
+    <div class="form-group">
+      <label for="name" class="col-md-1 col-sm-4 control-label">全局搜索:</label>
+      <div class="col-md-8 col-sm-8">
+        <input type="text" class="form-control" id="name"
+               placeholder="请填写小区名称, 小区地址, 管理员手机号等信息..."
+               ng-model="propertyVm.query"
+               ng-change="propertyVm.updateFilteredList(propertyVm.query)">
+      </div>
+      <div class="col-md-1 col-sm-1" style="width: 9%;"></div>
+      <div class="col-md-2 col-sm-2" style="padding-left: 0">
+        <button class="btn btn-primary btn-sm"
+                ng-click="propertyVm.openModal('modal-add','customer.addCtrl as addVm')">
+          新增设备
+        </button>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="col-md-1 col-sm-4 control-label">小区类别:</label>
+      <div class="col-md-3 col-sm-8">
+        <select ui-select2 ng-model="type" data-placeholder="请选择类别">
+          <option value=""></option>
+          <option ng-value="item" ng-repeat="item in propertyVm.infoList.villa_type">
+            {{item}}
+          </option>
+        </select>
+      </div>
+      <label class="col-md-1 col-sm-4 control-label">物业名称:</label>
+      <div class="col-md-3 col-sm-8">
+        <select ui-select2 ng-model="company" data-placeholder="请选择物业名称">
+          <option value=""></option>
+          <option ng-value="item" ng-repeat="item in propertyVm.infoList.prop_company">
+            {{item}}
+          </option>
+        </select>
+      </div>
+      <label class="col-md-1 col-sm-4 control-label">状态:</label>
+      <div class="col-md-2 col-sm-8">
+        <select ui-select2 ng-model="company" data-placeholder="请选择状态">
+          <option value=""></option>
+          <option ng-value="item" ng-repeat="item in propertyVm.infoList.device_state">
+            {{item}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+  </form>
+</div>
+
+<div class="table-box p-v-sm">
+  <table ng-table="deviceVm.tableParams" class="table table-striped wk-table">
+    <thead>
+    <th>序号</th>
+    <th>小区名称</th>
+    <th>小区类别</th>
+    <th>物业名称</th>
+    <th>小区地址</th>
+    <th>小区管理员</th>
+    <th>分区</th>
+    <th>幢</th>
+    <th>单元</th>
+    <th>楼层</th>
+    <th>户</th>
+    <th>设备状态</th>
+    <th>操作</th>
+    </thead>
+  </table>
+</div>

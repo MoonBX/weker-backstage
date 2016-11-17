@@ -1,0 +1,15 @@
+<div class="position-right">
+  <div class="panel m-v-lg m-h-sm m-t-sp" style="position: relative">
+    <div class="nav-title" style="position: absolute;top: -29px; left: -1px">
+      <a ui-sref="{{item.sref}}"
+         ng-class="{'active': item.isActive}"
+         ng-click="propertyVm.switchTabNav($index)"
+         ng-repeat="item in propertyVm.navGroup">
+        {{item.title}}
+      </a>
+    </div>
+    <div class="panel-body">
+      <div ui-view></div>
+    </div>
+  </div>
+</div>

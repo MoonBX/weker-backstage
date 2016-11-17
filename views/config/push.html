@@ -1,5 +1,33 @@
 <div class="center-block w-xl w-auto-xs m-b-lg" style="width: 600px;">
-  <form class="form-horizontal m-v-md" role="form">
+  <form class="form-horizontal m-v-md" name="form">
+    <div class="form-group">
+      <div class="col-md-12 p-h-n">
+        <label class="control-label pull-left cus-lb-temp-f">终端类型:&nbsp;&nbsp;</label>
+        <div class="pull-left cus-inp-temp-t" style="width: 300px">
+          <div class="radio pull-left">
+            <label class="ui-checks">
+              <input type="radio" name="b" value="weker" ng-model="e">
+              <i></i>
+              Weker
+            </label>
+          </div>
+          <div class="radio pull-left m-l-md">
+            <label class="ui-checks">
+              <input type="radio" name="b" value="weker_assistant" ng-model="e">
+              <i></i>
+              Weker小助手
+            </label>
+          </div>
+          <div class="radio pull-left m-l-md">
+            <label class="ui-checks">
+              <input type="radio" name="b" value="weker_talkback" ng-model="e">
+              <i></i>
+              Weker云对讲
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="form-group">
       <div class="col-md-12 p-h-n">
         <label class="control-label pull-left cus-lb-temp-f">手机型号:&nbsp;&nbsp;</label>

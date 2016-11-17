@@ -98,6 +98,9 @@ nav ul.nav li a {
   .col-md-8 {
     width: 65%;
   }
+  .col-md-10{
+    width: 85%
+  }
   .col-md-11{
     width: 90%
   }
@@ -330,4 +333,19 @@ nav ul.nav li a {
   outline: 0;
   border-color: #acb2b8;
   transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+/* modal 居中 */
+.modal.in .modal-dialog{
+  -webkit-transform:translate(0,-50%);
+  -ms-transform:translate(0,-50%);
+  -o-transform:translate(0,-50%);
+  transform:translate(0,-50%)
+}
+.modal-dialog{
+  position:absolute;
+  margin:10px auto;
+  left:0;
+  right:0;
+  top:50%
 }

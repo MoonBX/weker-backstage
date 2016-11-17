@@ -4,7 +4,7 @@
 angular.module('logMdl', [])
   .controller('logCtrl', logCtrl)
 
-function logCtrl($location, $scope, appSrv, NgTableParams){
+function logCtrl(appSrv, NgTableParams){
   var logVm = this;
   logVm.infoList = {
     group: [
