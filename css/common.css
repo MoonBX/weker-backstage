@@ -5,6 +5,9 @@
 .app-footer{
   position: fixed;
 }
+.container{
+  width: 1000px !important;
+}
 @media (min-width: 768px){
   .position-right{
     margin-top: 12px;
@@ -62,6 +65,9 @@
 nav ul.nav li a {
   padding: 10px 45px;
 }
+.panel{
+  min-width: 900px;
+}
 .panel-trans{
   border: none;
 }
@@ -85,26 +91,7 @@ nav ul.nav li a {
   color: #4cb2db;
 }
 
-@media (min-width: 992px){
-  .col-md-1 {
-    width: 10%;
-  }
-  .col-md-2 {
-    width: 15%;
-  }
-  .col-md-5 {
-    width: 40%;
-  }
-  .col-md-8 {
-    width: 65%;
-  }
-  .col-md-10{
-    width: 85%
-  }
-  .col-md-11{
-    width: 90%
-  }
-}
+
 .wk-dropdown{
   position:relative;
   margin:0px auto;
@@ -244,8 +231,9 @@ nav ul.nav li a {
   font-size: 13px;
 }
 .table-box table.wk-table thead{
-  background: #7d9cd4;
-  /*background: #4cb2db;*/
+  /*background: #7d9cd4;*/
+  background: #4cb2db;
+  /*background: #0b92c8;*/
 }
 .table-box table.wk-table thead th, .wk-table table thead td {
   color: #ffffff;
@@ -336,16 +324,43 @@ nav ul.nav li a {
 }
 
 /* modal 居中 */
-.modal.in .modal-dialog{
-  -webkit-transform:translate(0,-50%);
-  -ms-transform:translate(0,-50%);
-  -o-transform:translate(0,-50%);
-  transform:translate(0,-50%)
+/*.modal.in .modal-dialog{*/
+  /*-webkit-transform:translate(0,-50%);*/
+  /*-ms-transform:translate(0,-50%);*/
+  /*-o-transform:translate(0,-50%);*/
+  /*transform:translate(0,-50%)*/
+/*}*/
+/*.modal-dialog{*/
+  /*position:absolute;*/
+  /*margin:10px auto;*/
+  /*left:0;*/
+  /*right:0;*/
+  /*top:50%*/
+/*}*/
+
+/*自适应*/
+.state-width{
+  width: 7%;
 }
-.modal-dialog{
-  position:absolute;
-  margin:10px auto;
-  left:0;
-  right:0;
-  top:50%
+.mini-show{
+  display: none;
+}
+@media (max-width:768px ){
+  .state-width{
+    width: 10%;
+  }
+  .mini-hide{
+    display: none;
+  }
+  .mini-show{
+    display: block;
+  }
+  .form-horizontal .control-label {
+    padding-top: 7px;
+    margin-bottom: 0;
+    text-align: right;
+  }
+  .app-aside {
+    width: 35%;
+  }
 }

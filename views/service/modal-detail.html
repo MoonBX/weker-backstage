@@ -9,34 +9,34 @@
   <form class="form-horizontal m-v-md b-b" role="form" style="padding-right: 30px;padding-left: 15px;">
     <div class="form-group">
       <!--姓名-->
-      <div class="col-md-4 p-h-n">
+      <div class="col-md-4 col-xs-4 p-h-n">
         <label class="control-label pull-left cus-lb-temp-o">客户姓名:&nbsp;&nbsp;</label>
         <input type="text" ng-model="detailVm.result[0].name" class="form-control pull-left cus-inp-temp-o" disabled>
       </div>
       <!--号码-->
-      <div class="col-md-4 p-h-n">
+      <div class="col-md-4 col-xs-4 p-h-n">
         <label class="control-label pull-left cus-lb-temp-o">手机号码:&nbsp;&nbsp; </label>
         <input type="text" ng-model="detailVm.result[0].phone" class="form-control pull-left cus-inp-temp-o" disabled>
       </div>
       <!--数量-->
-      <div class="col-md-4 p-h-n">
+      <div class="col-md-4 col-xs-4 p-h-n">
         <label class="control-label pull-left cus-lb-temp-o">购买数量:&nbsp;&nbsp; </label>
         <input type="text" ng-model="detailVm.result[0].amount" class="form-control pull-left cus-inp-temp-o" disabled>
       </div>
     </div>
     <div class="form-group">
       <!--类型-->
-      <div class="col-md-4 p-h-n">
+      <div class="col-md-4 col-xs-4 p-h-n">
         <label class="control-label pull-left cus-lb-temp-o">客户类型:&nbsp;&nbsp;</label>
         <input type="text" ng-model="detailVm.result[0].type" class="form-control pull-left cus-inp-temp-o" disabled>
       </div>
       <!--渠道-->
-      <div class="col-md-4 p-h-n">
+      <div class="col-md-4 col-xs-4 p-h-n">
         <label class="control-label pull-left cus-lb-temp-o">客户渠道:&nbsp;&nbsp;</label>
         <input type="text" ng-model="detailVm.result[0].channel" class="form-control pull-left cus-inp-temp-o" disabled>
       </div>
       <!--产品-->
-      <div class="col-md-4 p-h-n">
+      <div class="col-md-4 col-xs-4 p-h-n">
         <label class="control-label pull-left cus-lb-temp-o">购买产品:&nbsp;&nbsp;</label>
         <input type="text" ng-model="detailVm.result[0].product" class="form-control pull-left cus-inp-temp-o" disabled>
       </div>
@@ -46,19 +46,19 @@
     <div class="form-group">
       <div style="padding:0 12px 10px;"><strong>产品参数</strong></div>
       <!--开门方向-->
-      <div class="col-md-5 p-h-n">
+      <div class="col-md-5 col-xs-5 p-h-n">
         <label class="control-label pull-left cus-lb-temp-t">开门方向:&nbsp;&nbsp;</label>
         <input type="text" ng-model="detailVm.result[0].direction" class="form-control pull-left cus-inp-temp-t" disabled>
       </div>
       <!--天地沟-->
-      <div class="col-md-5 p-h-n">
+      <div class="col-md-5 col-xs-5 p-h-n">
         <label class="control-label pull-left cus-lb-temp-t">天地沟:&nbsp;&nbsp;</label>
         <input type="text" ng-model="detailVm.result[0].sohe" class="form-control pull-left cus-inp-temp-t" disabled>
       </div>
     </div>
     <div class="form-group">
       <!--导片宽-->
-      <div class="col-md-5 p-h-n">
+      <div class="col-md-5 col-xs-5 p-h-n">
         <label class="control-label pull-left cus-lb-temp-t">锁体导片宽:&nbsp;&nbsp;</label>
         <div class="pull-left cus-inp-temp-t" >
           <input type="text" ng-model="detailVm.result[0].width" class="form-control pull-left" disabled>
@@ -66,7 +66,7 @@
         </div>
       </div>
       <!--导片长-->
-      <div class="col-md-5 p-h-n">
+      <div class="col-md-5 col-xs-5 p-h-n">
         <label class="control-label pull-left cus-lb-temp-t">锁体导片长:&nbsp;&nbsp;</label>
         <div class="pull-left cus-inp-temp-t">
           <input type="text" ng-model="detailVm.result[0].height" class="form-control pull-left" disabled>
@@ -76,7 +76,7 @@
     </div>
     <div class="form-group">
       <!--备注-->
-      <div class="col-md-12 p-h-n">
+      <div class="col-md-12 col-xs-12 p-h-n">
         <label class="control-label pull-left cus-lb-temp-th">备注:&nbsp;&nbsp;</label>
         <div class="pull-left cus-inp-temp-th" >
           <input type="text" ng-model="detailVm.result[0].remark" class="form-control pull-left" disabled>
@@ -88,7 +88,7 @@
   <form class="form-horizontal m-b-md b-b" role="form" style="padding-right: 30px;padding-left: 15px;">
     <div class="form-group">
       <!--发货地址-->
-      <div class="col-md-12 p-h-n">
+      <div class="col-md-12 col-xs-12 p-h-n">
         <label class="control-label pull-left cus-lb-temp-fi">发货地址:&nbsp;&nbsp;</label>
         <div class="pull-left cus-inp-temp-fi" >
           <select required="" class="my-select" ng-model="address.province" ng-options="key as key for (key,value) in detailVm.addressList"
@@ -114,7 +114,7 @@
     </div>
     <div class="form-group">
       <!--发货详细地址-->
-      <div class="col-md-12 p-h-n">
+      <div class="col-md-12 col-xs-12 p-h-n">
         <label class="control-label pull-left cus-lb-temp-f"></label>
         <div class="pull-left cus-inp-temp-f" >
           <input type="text" class="form-control pull-left" placeholder="小区名称">
@@ -126,7 +126,7 @@
     </div>
     <div class="form-group">
       <!--安装地址-->
-      <div class="col-md-12 p-h-n">
+      <div class="col-md-12 col-xs-12 p-h-n">
         <label class="control-label pull-left cus-lb-temp-fi">安装地址:&nbsp;&nbsp;</label>
         <div class="pull-left cus-inp-temp-fi" >
           <select required="" class="my-select" ng-model="address.province" ng-options="key as key for (key,value) in detailVm.addressList"
@@ -152,7 +152,7 @@
     </div>
     <div class="form-group">
       <!--安装详细地址-->
-      <div class="col-md-12 p-h-n">
+      <div class="col-md-12 col-xs-12 p-h-n">
         <label class="control-label pull-left cus-lb-temp-f"></label>
         <div class="pull-left cus-inp-temp-f" >
           <input type="text" class="form-control pull-left" placeholder="小区名称">
@@ -164,7 +164,7 @@
     </div>
     <div class="form-group">
       <!--安装时间-->
-      <div class="col-md-12 p-h-n">
+      <div class="col-md-12 col-xs-12 p-h-n">
         <label class="control-label pull-left cus-lb-temp-fi">安装时间:&nbsp;&nbsp;</label>
         <div class="pull-left cus-inp-temp-f" >
           <input type="text" style="height: 32px;position: relative;top: 1px;padding-left: 6px;"
@@ -182,12 +182,12 @@
     </div>
     <div class="form-group">
       <!--安装原因-->
-      <div class="col-md-5 p-h-n">
+      <div class="col-md-5 col-xs-5 p-h-n">
         <label class="control-label pull-left cus-lb-temp-t">安装人员:&nbsp;&nbsp;</label>
         <input type="text" class="form-control pull-left cus-inp-temp-o">
       </div>
       <!--联系方式-->
-      <div class="col-md-5 p-h-n">
+      <div class="col-md-5 col-xs-5 p-h-n">
         <label class="control-label pull-left cus-lb-temp-o">联系方式:&nbsp;&nbsp; </label>
         <input type="text" class="form-control pull-left cus-inp-temp-o">
       </div>
@@ -195,7 +195,7 @@
     </div>
     <div class="form-group">
       <!--状态-->
-      <div class="col-md-5 p-h-n">
+      <div class="col-md-5 col-xs-5 p-h-n">
         <label class="control-label pull-left cus-lb-temp-o">状态:&nbsp;&nbsp; </label>
         <div class="pull-left cus-inp-temp-o" >
           <select ui-select2 ng-model="state" data-placeholder="请选择类型">
@@ -203,7 +203,6 @@
             <option ng-value="item" ng-repeat="item in detailVm.infoList.service_state">{{item}}</option>
           </select>
         </div>
-
       </div>
     </div>
   </form>

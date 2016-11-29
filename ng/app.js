@@ -8,6 +8,7 @@ angular.module('app', [
   'ui.router',
   'ui.bootstrap',
   'mgcrea.ngStrap.datepicker',
+  'mgcrea.ngStrap.dropdown',
   'ui.select2',
   'ngAnimate',
   'ngTable',
@@ -198,7 +199,7 @@ function config($stateProvider, $urlRouterProvider){
       templateUrl: 'views/device/maintain.html',
       controller: 'deviceCtrl',
       controllerAs: 'deviceVm'
-    })
+    });
 
 
 

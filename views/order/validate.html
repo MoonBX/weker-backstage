@@ -2,16 +2,16 @@
   <form class="form-horizontal" role="form">
     <div class="form-group">
 
-      <label for="name" class="col-md-1 col-sm-4 control-label">全局搜索:</label>
-      <div class="col-md-5 col-sm-8">
+      <label for="name" class="col-md-1 col-lg-1 control-label">全局搜索:</label>
+      <div class="col-md-5 col-lg-3">
         <input type="text" class="form-control" id="name"
                placeholder="请填写客户信息"
                ng-model="orderVm.query"
                ng-change="orderVm.updateFilteredList(orderVm.query)">
       </div>
 
-      <label class="col-md-1 col-sm-4 control-label">购买产品:</label>
-      <div class="col-md-2 col-sm-8">
+      <label class="col-md-1 col-lg-1 control-label">购买产品:</label>
+      <div class="col-md-2 col-lg-2">
         <select ui-select2 ng-model="orderVm.product"
                 data-placeholder="请选择产品"
                 ng-change="orderVm.updateFilteredList(orderVm.product)">
@@ -20,8 +20,8 @@
         </select>
       </div>
 
-      <label class="col-md-1 col-sm-4 control-label" style="width: 7%">状态:</label>
-      <div class="col-md-2 col-sm-8">
+      <label class="col-md-1 col-lg-1 control-label state-width">状态:</label>
+      <div class="col-md-2 col-lg-2">
         <select ui-select2 ng-model="state" data-placeholder="请选择状态">
           <option value=""></option>
           <option ng-value="item" ng-repeat="item in orderVm.infoList.orderV_state">{{item}}</option>

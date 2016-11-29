@@ -1,17 +1,17 @@
 <div class="screen-box m-v-sm b-b p-v-sm">
   <form class="form-horizontal" role="form">
     <div class="form-group">
-      <label for="name" class="col-md-1 col-sm-2 col-lg-1 control-label">
+      <label for="name" class="col-md-1 col-lg-1 control-label">
         全局搜索:
       </label>
-      <div class="col-md-8 col-sm-8">
+      <div class="col-md-5 col-lg-5">
         <input type="text" class="form-control" id="name"
                placeholder="请输入关键字: 如姓名, 手机号码, 参数等..."
                ng-model="customerVm.query"
                ng-change="customerVm.updateFilteredList(customerVm.query)">
       </div>
-      <div class="col-md-1 col-sm-1" style="width: 9%;"></div>
-      <div class="col-md-2 col-sm-2" style="padding-left: 0">
+
+      <div class="col-md-2 col-lg-2 hidden-xs" >
         <button class="btn btn-primary btn-sm"
                 ng-click="customerVm.openModal('modal-add','customer.addCtrl as addVm')">
           新增用户
@@ -19,8 +19,8 @@
       </div>
     </div>
     <div class="form-group">
-      <label class="col-md-1 col-sm-2 control-label">客户类型:</label>
-      <div class="col-md-2 col-sm-4">
+      <label class="col-md-1 col-lg-1 control-label">客户类型:</label>
+      <div class="col-md-2 col-lg-2">
         <select ui-select2 ng-model="customerVm.type"
                 data-placeholder="请选择类型"
                 ng-change="customerVm.updateFilteredList(customerVm.type)">
@@ -31,8 +31,8 @@
           </option>
         </select>
       </div>
-      <label class="col-md-1 col-sm-2 control-label">客户渠道:</label>
-      <div class="col-md-2 col-sm-4">
+      <label class="col-md-1 col-lg-1 control-label">客户渠道:</label>
+      <div class="col-md-2 col-lg-2">
         <select ui-select2 ng-model="customerVm.channel"
                 data-placeholder="请选择渠道"
                 ng-change="customerVm.updateFilteredList(customerVm.channel)">
@@ -43,8 +43,8 @@
           </option>
         </select>
       </div>
-      <label class="col-md-1 col-sm-2 control-label">购买产品:</label>
-      <div class="col-md-2 col-sm-4">
+      <label class="col-md-1 col-lg-1 control-label">购买产品:</label>
+      <div class="col-md-2 col-lg-2">
         <select ui-select2 ng-model="customerVm.product"
                 data-placeholder="请选择产品"
                 ng-change="customerVm.updateFilteredList(customerVm.product)">
@@ -55,8 +55,8 @@
           </option>
         </select>
       </div>
-      <label class="col-md-1 col-sm-2 control-label" style="width: 7%">状态:</label>
-      <div class="col-md-2 col-sm-4">
+      <label class="col-md-1 col-lg-1 control-label state-width">状态:</label>
+      <div class="col-md-2 col-lg-2">
         <select ui-select2 ng-model="state" data-placeholder="请选择状态">
           <option value=""></option>
           <option ng-value="item"
@@ -64,6 +64,14 @@
             {{item}}
           </option>
         </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-md-2 col-lg-2 visible-xs">
+        <button class="btn btn-primary btn-sm"
+                ng-click="customerVm.openModal('modal-add','customer.addCtrl as addVm')">
+          新增用户
+        </button>
       </div>
     </div>
   </form>

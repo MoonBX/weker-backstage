@@ -1,7 +1,6 @@
 /**
  * Created by zhongyuqiang on 16/11/9.
  */
-configCtrl
 angular.module('configMdl', [])
   .controller('configCtrl', configCtrl)
   .controller('config.addCtrl', addCtrl)
@@ -19,7 +18,7 @@ function configCtrl($location, $scope, $modal, appSrv){
       {sref: 'config.appLaunch', path: '/config/appLaunch', title: '启动页配置', isActive: false},
       {sref: 'config.upgrade', path: '/config/upgrade', title: '固件更新推送', isActive: false},
     ]
-  }
+  };
   $scope.d = 'android';
 
   configVm.switchTabNav = switchTabNav;

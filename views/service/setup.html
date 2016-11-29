@@ -1,25 +1,38 @@
 <div class="screen-box m-v-sm b-b p-v-sm">
   <form class="form-horizontal" role="form">
     <div class="form-group">
-      <label for="name" class="col-md-1 col-sm-4 control-label">全局搜索:</label>
-      <div class="col-md-8 col-sm-8">
+      <label for="name" class="col-md-1 col-lg-1 control-label">全局搜索:</label>
+      <div class="col-md-8 col-lg-5">
         <input type="text" class="form-control" id="name"
                placeholder="请填写客户姓名" ng-model="serviceVm.query"
                ng-change="serviceVm.updateFilteredList(serviceVm.query)">
       </div>
+      <div class="visible-lg">
+        <label class="col-md-1 col-lg-1 control-label">客户类型:</label>
+        <div class="col-md-2 col-lg-2">
+          <select ui-select2 ng-model="serviceVm.type"
+                  data-placeholder="请选择类型"
+                  ng-change="serviceVm.updateFilteredList(serviceVm.type)">
+            <option value=""></option>
+            <option ng-value="item" ng-repeat="item in serviceVm.infoList.type">{{item}}</option>
+          </select>
+        </div>
+      </div>
     </div>
     <div class="form-group">
-      <label class="col-md-1 col-sm-4 control-label">客户类型:</label>
-      <div class="col-md-2 col-sm-8">
-        <select ui-select2 ng-model="serviceVm.type"
-                data-placeholder="请选择类型"
-                ng-change="serviceVm.updateFilteredList(serviceVm.type)">
-          <option value=""></option>
-          <option ng-value="item" ng-repeat="item in serviceVm.infoList.type">{{item}}</option>
-        </select>
+      <div class="hidden-lg">
+        <label class="col-md-1 col-lg-1 control-label">客户类型:</label>
+        <div class="col-md-2 col-lg-2">
+          <select ui-select2 ng-model="serviceVm.type"
+                  data-placeholder="请选择类型"
+                  ng-change="serviceVm.updateFilteredList(serviceVm.type)">
+            <option value=""></option>
+            <option ng-value="item" ng-repeat="item in serviceVm.infoList.type">{{item}}</option>
+          </select>
+        </div>
       </div>
-      <label class="col-md-1 col-sm-4 control-label">客户渠道:</label>
-      <div class="col-md-2 col-sm-8">
+      <label class="col-md-1 col-lg-1 control-label">客户渠道:</label>
+      <div class="col-md-2 col-lg-2">
         <select ui-select2 ng-model="serviceVm.channel"
                 data-placeholder="请选择渠道"
                 ng-change="serviceVm.updateFilteredList(serviceVm.channel)">
@@ -27,8 +40,8 @@
           <option ng-value="item" ng-repeat="item in serviceVm.infoList.channel">{{item}}</option>
         </select>
       </div>
-      <label class="col-md-1 col-sm-4 control-label">购买产品:</label>
-      <div class="col-md-2 col-sm-8">
+      <label class="col-md-1 col-lg-1 control-label">购买产品:</label>
+      <div class="col-md-2 col-lg-2">
         <select ui-select2 ng-model="serviceVm.product"
                 data-placeholder="请选择产品"
                 ng-change="serviceVm.updateFilteredList(serviceVm.product)">>
@@ -36,8 +49,8 @@
           <option ng-value="item" ng-repeat="item in serviceVm.infoList.product">{{item}}</option>
         </select>
       </div>
-      <label class="col-md-1 col-sm-4 control-label" style="width: 7%">状态:</label>
-      <div class="col-md-2 col-sm-8">
+      <label class="col-md-1 col-lg-1 control-label">安装状态:</label>
+      <div class="col-md-2 col-lg-2">
         <select ui-select2 ng-model="state" data-placeholder="请选择状态">
           <option value=""></option>
           <option ng-value="item" ng-repeat="item in serviceVm.service_state">{{item}}</option>
