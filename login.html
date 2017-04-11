@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="center-block w-xl w-auto-xs m-b-lg p-v">
+    <div class="text-2x m-v-lg text-primary ng-binding">
+      <i class="glyphicon glyphicon-th-large text-xl"></i>
+      Weker运营平台
+    </div>
+    <div class="m-b text-sm">请在此登录</div>
+    <form name="form" novalidate>
+      <div class="form-group m-b-xs">
+        <label class="hide">Email</label>
+        <input type="text"
+               placeholder="请输入用户名"
+               class="form-control"
+               ng-model="mainVm.account.userName"
+               required>
+      </div>
+      <div class="form-group m-b-xs">
+        <label class="hide">Password</label>
+        <input type="password"
+               placeholder="请输入密码"
+               class="form-control"
+               ng-model="mainVm.account.passwd"
+               required>
+      </div>
+
+      <button ng-if="!mainVm.loging&&!mainVm.logingFail"
+              type="submit"
+              class="btn btn-primary p-h-md m-v-lg"
+              ng-click="mainVm.login(mainVm.account)"
+      >登录
+      </button>
+      <!--<p class="text-xs">-->
+        <!--<a ui-sref="forgot-password" href="#/forgot-password">-->
+          <!--忘记密码?-->
+        <!--</a>-->
+      <!--</p>-->
+    </form>
+  </div>
+</div>

@@ -13007,10 +13007,11 @@ a.list-group-item.hover {
   border-radius: 0
 }
 .nav-sub {
-  height: 0;
-  margin-left: -20px;
-  overflow: hidden;
-  opacity: 0;
+  /*height: 0;*/
+  /*margin-left: -20px;*/
+  padding: 20px;
+  /*overflow: hidden;*/
+  /*opacity: 0;*/
   -webkit-transition: all .2s ease-in-out 0s;
   transition: all .2s ease-in-out 0s
 }
@@ -14808,7 +14809,7 @@ a.text-primary:hover {
   color: #124fa4
 }
 .text-primary {
-  color: #155abb
+  color: #4cb2db;
 }
 .text-primary-lt {
   color: #1865d2

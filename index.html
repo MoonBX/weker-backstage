@@ -14,6 +14,7 @@
   <script src="bower_components/select2/select2.js"></script>
   <script src="bower_components/angular/angular.js"></script>
   <script src="ng/directive/angular-locale_zh-cn.js"></script>
+  <script src="ng/directive/angular-swiper.js"></script>
   <script src="bower_components/angular-animate/angular-animate.js"></script>
   <script src="bower_components/angular-resource/angular-resource.js"></script>
   <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
@@ -30,6 +31,7 @@
   <script src="ng/app.js"></script>
   <script src="ng/main.js"></script>
   <script src="ng/service/appSrv.js"></script>
+  <script src="ng/service/accountSrv.js"></script>
   <script src="ng/controller/customer.js"></script>
   <script src="ng/service/customerSrv.js"></script>
   <script src="ng/controller/order.js"></script>
@@ -41,26 +43,32 @@
   <script src="ng/controller/device.js"></script>
   <script src="ng/service/deviceSrv.js"></script>
   <script src="ng/controller/property.js"></script>
+  <script src="ng/service/propertySrv.js"></script>
 </head>
 <body ng-controller="mainCtl as mainVm">
 
-<header id="header"
-        ng-include=" 'banner.html' "
-        class="app-header box-shadow navbar bg-banner"
-        role="menu"
-></header>
-<aside id="aside"
-       class="app-aside hidden-xs bg-dark lt"
-       ng-include="'aside.html'"
-       ng-class="{'show animated fadeInLeft' : mainVm.asideCollapse}"
-></aside>
-<div class="app app-header-fixed"
-     ui-view
-></div>
-<footer id="footer"
-        class="app-footer"
-        role="footer"
-        ng-include="'footer.html'"
-></footer>
+<div ng-if="mainVm.isLogin">
+  <header id="header"
+          ng-include=" 'banner.html' "
+          class="app-header box-shadow navbar bg-banner"
+          role="menu"
+  ></header>
+  <aside id="aside"
+         class="app-aside hidden-xs bg-dark lt"
+         ng-include="'aside.html'"
+         ng-class="{'show animated fadeInLeft' : mainVm.asideCollapse}"
+  ></aside>
+  <div class="app app-header-fixed"
+       ui-view
+  ></div>
+  <footer id="footer"
+          class="app-footer"
+          role="footer"
+          ng-include="'footer.html'"
+  ></footer>
+</div>
+<div ng-if="!mainVm.isLogin" style="height: 100%">
+  <div ui-view style="height: 100%;"></div>
+</div>
 </body>
 </html>

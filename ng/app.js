@@ -24,9 +24,11 @@ angular.module('app', [
   'deviceMdl',
   'deviceApi',
   'propertyMdl',
+  'propertyApi',
   'appApi',
   'customerApi',
-  'orderApi'
+  'orderApi',
+  'accountApi'
 ]);
 
 angular.module('app')
@@ -46,129 +48,158 @@ function initConfig( uiSelect2Config, toastrConfig, taOptions){
   ];
 }
 
-function config($stateProvider, $urlRouterProvider){
-  $urlRouterProvider.otherwise('/customer/manage');
+function config($httpProvider, $stateProvider, $urlRouterProvider){
+  delete $httpProvider.defaults.headers.common['X-Requested-With'];
+  if (!$httpProvider.defaults.headers.get) {
+    $httpProvider.defaults.headers.get = {};
+  }
+  $httpProvider.defaults.headers.get['Cache-Control'] = 'no-cache';
+  $httpProvider.defaults.headers.get['Pragma'] = 'no-cache';
+
+  $httpProvider.interceptors.push(function($q) {
+    return {
+      responseError: function(rejection) {
+        if(rejection.status <= 0) {
+          if(window.navigator.onLine==true){
+            window.location.href = '#/login';
+            return;
+          }else{
+            alert("网络已断开");
+          }
+        }
+        return $q.reject(rejection);
+      }
+    };
+  });
+
+
+  $urlRouterProvider.otherwise('/login');
 
   $stateProvider
-    .state('customer', {
-      url: "/customer",
-      templateUrl: "views/customer/home.html",
-      controller: "customerCtrl",
-      controllerAs: "customerVm"
-    })
-    .state('customer.manage', {
-      url: "/manage",
-      templateUrl: 'views/customer/manage.html',
-      controller: "customerCtrl",
-      controllerAs: "customerVm"
-    })
-    .state('customer.verify', {
-      url: "/verify",
-      templateUrl: 'views/customer/verify.html',
-      controller: "customerCtrl",
-      controllerAs: "customerVm"
-    })
-    .state('order', {
-      url: "/order",
-      templateUrl: "views/order/home.html",
-      controller: "orderCtrl",
-      controllerAs: "orderVm"
-    })
-    .state('order.receipt', {
-      url: '/receipt',
-      templateUrl: "views/order/receipt.html",
-      controller: "orderCtrl",
-      controllerAs: "orderVm"
-    })
-    .state('order.validate', {
-      url: '/validate',
-      templateUrl: 'views/order/validate.html',
-      controller: "orderCtrl",
-      controllerAs: "orderVm"
-    })
-    .state('service', {
-      url: '/service',
-      templateUrl: 'views/service/home.html',
-      controller: "serviceCtrl",
-      controllerAs: "serviceVm"
-    })
-    .state('service.setup', {
-      url: '/setup',
-      templateUrl: 'views/service/setup.html',
-      controller: "serviceCtrl",
-      controllerAs: "serviceVm"
-    })
-    .state('config', {
-      url: '/config',
-      templateUrl: 'views/config/home.html',
-      controller: "configCtrl",
-      controllerAs: "configVm"
-    })
-    .state('config.banner', {
-      url: '/banner',
-      templateUrl: 'views/config/banner.html',
-      controller: "configCtrl",
-      controllerAs: "configVm"
-    })
-    .state('config.carousel', {
-      url: '/carousel',
-      templateUrl: 'views/config/carousel.html',
-      controller: "configCtrl",
-      controllerAs: "configVm"
-    })
-    .state('config.proto', {
-      url: '/proto',
-      templateUrl: 'views/config/proto.html',
-      controller: "configCtrl",
-      controllerAs: "configVm"
-    })
-    .state('config.active', {
-      url: '/activity',
-      templateUrl: 'views/config/activity.html',
-      controller: "configCtrl",
-      controllerAs: "configVm"
-    })
-    .state('config.push', {
-      url: '/push',
-      templateUrl: 'views/config/push.html',
-      controller: "configCtrl",
-      controllerAs: "configVm"
-    })
-    .state('config.appLaunch', {
-      url: '/appLaunch',
-      templateUrl: 'views/config/appLaunch.html',
-      controller: "configCtrl",
-      controllerAs: "configVm"
-    })
-    .state('config.upgrade', {
-      url: '/upgrade',
-      templateUrl: 'views/config/upgrade.html',
-      controller: "configCtrl",
-      controllerAs: "configVm"
-    })
-    .state('log', {
-      url: '/log',
-      templateUrl: 'views/log/home.html',
-      controller: "logCtrl",
-      controllerAs: "logVm"
-    })
-    .state('log.record', {
-      url: '/record',
-      templateUrl: 'views/log/record.html',
-      controller: "logCtrl",
-      controllerAs: "logVm"
-    })
-    .state('account', {
-      url: '/account',
-      templateUrl: 'views/account/home.html',
-      controller: "accountCtrl",
-      controllerAs: "accountVm"
-    })
-    .state('account.update', {
-      url: '/update',
-      templateUrl: 'views/account/update.html',
-      controller: "accountCtrl",
-      controllerAs: "accountVm"
+    //.state('customer', {
+    //  url: "/customer",
+    //  templateUrl: "views/customer/home.html",
+    //  controller: "customerCtrl",
+    //  controllerAs: "customerVm"
+    //})
+    //.state('customer.manage', {
+    //  url: "/manage",
+    //  templateUrl: 'views/customer/manage.html',
+    //  controller: "customerCtrl",
+    //  controllerAs: "customerVm"
+    //})
+    //.state('customer.verify', {
+    //  url: "/verify",
+    //  templateUrl: 'views/customer/verify.html',
+    //  controller: "customerCtrl",
+    //  controllerAs: "customerVm"
+    //})
+    //.state('order', {
+    //  url: "/order",
+    //  templateUrl: "views/order/home.html",
+    //  controller: "orderCtrl",
+    //  controllerAs: "orderVm"
+    //})
+    //.state('order.receipt', {
+    //  url: '/receipt',
+    //  templateUrl: "views/order/receipt.html",
+    //  controller: "orderCtrl",
+    //  controllerAs: "orderVm"
+    //})
+    //.state('order.validate', {
+    //  url: '/validate',
+    //  templateUrl: 'views/order/validate.html',
+    //  controller: "orderCtrl",
+    //  controllerAs: "orderVm"
+    //})
+    //.state('service', {
+    //  url: '/service',
+    //  templateUrl: 'views/service/home.html',
+    //  controller: "serviceCtrl",
+    //  controllerAs: "serviceVm"
+    //})
+    //.state('service.setup', {
+    //  url: '/setup',
+    //  templateUrl: 'views/service/setup.html',
+    //  controller: "serviceCtrl",
+    //  controllerAs: "serviceVm"
+    //})
+    //.state('config', {
+    //  url: '/config',
+    //  templateUrl: 'views/config/home.html',
+    //  controller: "configCtrl",
+    //  controllerAs: "configVm"
+    //})
+    //.state('config.banner', {
+    //  url: '/banner',
+    //  templateUrl: 'views/config/banner.html',
+    //  controller: "configCtrl",
+    //  controllerAs: "configVm"
+    //})
+    //.state('config.carousel', {
+    //  url: '/carousel',
+    //  templateUrl: 'views/config/carousel.html',
+    //  controller: "configCtrl",
+    //  controllerAs: "configVm"
+    //})
+    //.state('config.proto', {
+    //  url: '/proto',
+    //  templateUrl: 'views/config/proto.html',
+    //  controller: "configCtrl",
+    //  controllerAs: "configVm"
+    //})
+    //.state('config.active', {
+    //  url: '/activity',
+    //  templateUrl: 'views/config/activity.html',
+    //  controller: "configCtrl",
+    //  controllerAs: "configVm"
+    //})
+    //.state('config.push', {
+    //  url: '/push',
+    //  templateUrl: 'views/config/push.html',
+    //  controller: "configCtrl",
+    //  controllerAs: "configVm"
+    //})
+    //.state('config.appLaunch', {
+    //  url: '/appLaunch',
+    //  templateUrl: 'views/config/appLaunch.html',
+    //  controller: "configCtrl",
+    //  controllerAs: "configVm"
+    //})
+    //.state('config.upgrade', {
+    //  url: '/upgrade',
+    //  templateUrl: 'views/config/upgrade.html',
+    //  controller: "configCtrl",
+    //  controllerAs: "configVm"
+    //})
+    //.state('log', {
+    //  url: '/log',
+    //  templateUrl: 'views/log/home.html',
+    //  controller: "logCtrl",
+    //  controllerAs: "logVm"
+    //})
+    //.state('log.record', {
+    //  url: '/record',
+    //  templateUrl: 'views/log/record.html',
+    //  controller: "logCtrl",
+    //  controllerAs: "logVm"
+    //})
+    //.state('account', {
+    //  url: '/account',
+    //  templateUrl: 'views/account/home.html',
+    //  controller: "accountCtrl",
+    //  controllerAs: "accountVm"
+    //})
+    //.state('account.update', {
+    //  url: '/update',
+    //  templateUrl: 'views/account/update.html',
+    //  controller: "accountCtrl",
+    //  controllerAs: "accountVm"
+    //})
+    .state('login', {
+      url: "/login",
+      templateUrl: "login.html"
+      //templateUrl: "stub/card/card.html"
     })
     .state('property', {
       url: '/property',

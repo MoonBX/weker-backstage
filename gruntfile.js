@@ -51,36 +51,36 @@ module.exports = function(grunt) {
       }
     },
     // 打包到build文件夹里
-    //copy: {
-    //  res:{
-    //    expand: true, src: ['./img/**'], dest: './build/'
-    //  },
-    //  lib:{
-    //    expand:true, src:['./lib/**'],dest: './build/'
-    //  },
-    //  css: {
-    //    expand: true, src: ['./css/**'], dest: './build/'
-    //  },
-    //  html: {
-    //    expand: true, src: ['./*.html','./views/**'], dest: './build/', encoding: "utf-8"
-    //  },
-    //  js:{
-    //    expand: true, src: ['./ng/**'], dest: './build/', encoding: "utf-8"
-    //  },
-    //  json:{
-    //    expand: true, src: ['./json/**'], dest: './build/'
-    //  },
-    //  fonts:{
-    //    expand: true, src: ['./fonts/**'], dest: './build/'
-    //  }
-    //},
+    copy: {
+      res:{
+        expand: true, src: ['./img/**'], dest: './build/'
+      },
+      lib:{
+        expand:true, src:['./lib/**'],dest: './build/'
+      },
+      css: {
+        expand: true, src: ['./css/**'], dest: './build/'
+      },
+      html: {
+        expand: true, src: ['./*.html','./views/**'], dest: './build/', encoding: "utf-8"
+      },
+      js:{
+        expand: true, src: ['./ng/**'], dest: './build/', encoding: "utf-8"
+      },
+      json:{
+        expand: true, src: ['./json/**'], dest: './build/'
+      },
+      fonts:{
+        expand: true, src: ['./fonts/**'], dest: './build/'
+      }
+    },
 
     connect: {
       options: {
         port: 8889,
         hostname: '*',
         //默认就是这个值，可配置为本机某个 IP，localhost 或域名
-        livereload: 35788
+        livereload: 35789
         // 声明给 watch 监听的端口
       },
 
@@ -111,12 +111,13 @@ module.exports = function(grunt) {
     }
   });
   grunt.loadNpmTasks('grunt-bower-task');
-  //grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  //grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.task.registerTask('serve', ['bower','less'/*,'concat','cssmin'*/, 'connect:server', 'watch']);
+  grunt.task.registerTask('build', ['concat','cssmin', 'copy']);
 };

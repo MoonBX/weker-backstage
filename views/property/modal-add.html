@@ -1,5 +1,5 @@
 <div class="content-head">
-  新增客户
+  新增小区
   <i class="pull-right fa fa-remove fa-2x m-r-sm m-t-xs"
      style="cursor: pointer"
      ng-click="addVm.cancel()">
@@ -8,7 +8,111 @@
 <div class="content-main property-modal">
   <form class="form-horizontal m-v-md b-b" role="form" style="padding-right: 30px;padding-left: 15px;">
     <div class="form-group">
-
+      <div class="p-h-n">
+        <label for="name" class="control-label pull-left" style="width: 90px">小区名称:&nbsp;&nbsp;</label>
+        <input type="text" class="form-control pull-left" ng-model="addVm.formList.name"
+               style="width: 160px;" id="name">
+      </div>
+      <div class="p-h-n">
+        <label class="control-label pull-left" style="width: 90px;">小区类别:&nbsp;&nbsp; </label>
+        <div class="pull-left m-l-xs" style="width: 160px;">
+          <select ui-select2 ng-model="type" data-placeholder="小区类别">
+            <option value=""></option>
+            <option ng-value="item" ng-repeat="item in addVm.infoList.type">{{item}}</option>
+          </select>
+        </div>
+      </div>
     </div>
+    <div class="form-group">
+      <div class="p-h-n">
+        <label for="name" class="control-label pull-left" style="width: 90px;">所属物业:&nbsp;&nbsp;</label>
+        <input type="text"
+               class="form-control pull-left cus-inp-temp-o"
+               style="width: 250px;" ng-model="addVm.formList.estateName"
+               id="property">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="p-h-n">
+        <label for="name" class="control-label pull-left" style="width: 90px;">小区地址:&nbsp;&nbsp;</label>
+        <div class="pull-left" style="width: 80px;">
+          <select ui-select2 ng-model="addVm.formList.province"
+                  data-placeholder="省" id="province"
+                  ng-change="addVm.getCities(addVm.formList.province)">
+            <option value=""></option>
+            <option ng-value="item.code" ng-repeat="item in addVm.address.province">
+              {{item.name}}
+            </option>
+          </select>
+        </div>
+        <div class="pull-left m-l-xs" style="width: 80px;">
+          <select ui-select2 ng-model="addVm.formList.city"
+                  data-placeholder="市" id="city"
+                  ng-change="addVm.getDistricts(addVm.formList.city)">
+            <option value=""></option>
+            <option ng-value="item.code" ng-repeat="item in addVm.address.cities">
+              {{item.name}}
+            </option>
+          </select>
+        </div>
+        <div class="pull-left m-l-xs" style="width: 80px;">
+          <select ui-select2 ng-model="addVm.formList.district"
+                  data-placeholder="区" id="district">
+            <option value=""></option>
+            <option ng-value="item.code" ng-repeat="item in addVm.address.districts">{{item.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="name" class="control-label pull-left" style="width: 90px;">&nbsp;&nbsp;</label>
+      <input type="text"
+             class="form-control pull-left"
+             style="width: 250px;"
+             ng-model="addVm.formList.address"
+             id="addressDetail"
+             placeholder="路名或街道地址、门牌号">
+    </div>
+    <div class="form-group">
+      <label for="name" class="control-label pull-left" style="width: 90px;">分区:&nbsp;&nbsp;</label>
+      <input type="text"
+             class="form-control pull-left m-r-sm"
+             ng-model="addVm.formList.partitionName"
+             style="width: 250px;"
+             id="inArea">
+      <a href="javascript:;" class="pull-left" style="padding-top: 7px;">添加</a>
+    </div>
+    <div class="form-group">
+      <label for="name" class="control-label pull-left" style="width: 90px;">幢:&nbsp;&nbsp;</label>
+      <input type="text"
+             class="form-control pull-left m-r-sm"
+             ng-model="addVm.formList.maxBlock"
+             style="width: 70px;"
+             id="zhuang"
+      >
+      <label for="name" class="control-label pull-left" style="width: 45px;">单元:&nbsp;&nbsp;</label>
+      <input type="text"
+             class="form-control pull-left m-r-sm"
+             ng-model="addVm.formList.maxUnit"
+             style="width: 70px;"
+             id="danyuan"
+      >
+      <label for="name" class="control-label pull-left" style="width: 45px;">楼层:&nbsp;&nbsp;</label>
+      <input type="text" class="form-control pull-left m-r-sm" style="width: 70px;" id="louceng">
+      <label for="name" class="control-label pull-left" style="width: 45px;">户:&nbsp;&nbsp;</label>
+      <input type="text" class="form-control pull-left m-r-sm" style="width: 70px;" id="hu">
+    </div>
+    <div class="form-group">
+      <label for="name" class="control-label pull-left" style="width: 90px;">管理员:&nbsp;&nbsp;</label>
+      <input type="text"
+             class="form-control pull-left m-r-sm"
+             style="width: 160px;"
+             ng-model="addVm.formList.admin"
+      >
+    </div>
+  </form>
+  <form class="form-horizontal m-b-md text-center" >
+    <button class="btn btn-success btn-sm m-r-md" ng-click="addVm.save(addVm.formList)">保存</button>
+    <button class="btn btn-primary btn-sm">保存并添加</button>
   </form>
 </div>

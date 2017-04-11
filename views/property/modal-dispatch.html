@@ -1,0 +1,33 @@
+<div class="content-head">
+  施工派单
+  <i class="pull-right fa fa-remove fa-2x m-r-sm m-t-xs"
+     style="cursor: pointer"
+     ng-click="dispatchVm.cancel()">
+  </i>
+</div>
+<div class="content-main property-modal">
+  <form class="form-horizontal m-v-md b-b" role="form" style="padding-right: 30px;padding-left: 15px;">
+    <div class="form-group">
+      <div class="p-h-n">
+        <label class="control-label pull-left" style="width: 120px;">负责人姓名:&nbsp;&nbsp;</label>
+        <input type="text"
+               class="form-control pull-left cus-inp-temp-o"
+               style="width: 250px;" ng-model="dispatchVm.formList.workerName"
+               id="name">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="p-h-n">
+        <label class="control-label pull-left" style="width: 120px;">负责人手机号:&nbsp;&nbsp;</label>
+        <input type="text"
+               class="form-control pull-left cus-inp-temp-o"
+               style="width: 250px;" ng-model="dispatchVm.formList.workerMobile"
+               id="mobile">
+      </div>
+    </div>
+  </form>
+  <form class="form-horizontal m-b-md text-center" >
+    <button class="btn btn-success btn-sm m-r-md" ng-click="dispatchVm.save(dispatchVm.formList)">保存</button>
+    <!--<button class="btn btn-primary btn-sm">保存并添加</button>-->
+  </form>
+</div>

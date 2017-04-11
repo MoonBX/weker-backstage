@@ -15,9 +15,12 @@
                 ng-click="propertyVm.openModal('modal-add','property.addCtrl as addVm')">
           添加小区
         </button>
+        <button class="btn btn-primary btn-sm"
+                ng-click="propertyVm.openModal('modal-dispatch','property.dispatchCtrl as dispatchVm')">
+          派单
+        </button>
       </div>
     </div>
-
     <div class="form-group">
       <label class="col-md-1 col-lg-1 control-label">小区类别:</label>
       <div class="col-md-3 col-lg-2">
@@ -55,26 +58,37 @@
         </button>
       </div>
     </div>
-
   </form>
 </div>
 
 <div class="table-box p-v-sm">
-  <table ng-table="deviceVm.tableParams" class="table table-striped wk-table">
+  <table class="table table-striped wk-table">
     <thead>
-    <th>序号</th>
     <th>小区名称</th>
-    <th>小区类别</th>
+    <!--<th>小区类别</th>-->
     <th>物业名称</th>
     <th>小区地址</th>
     <th>小区管理员</th>
     <th>分区</th>
     <th>幢</th>
     <th>单元</th>
-    <th>楼层</th>
-    <th>户</th>
-    <th>设备状态</th>
+    <!--<th>楼层</th>-->
+    <!--<th>户</th>-->
+    <!--<th>设备状态</th>-->
     <th>操作</th>
     </thead>
+    <tr ng-repeat="item in propertyVm.propProperty.list">
+      <td>{{item.name}}</td>
+      <td>{{item.estateName}}</td>
+      <td>{{item.province + ' ' + item.city + ' ' + item.district}}</td>
+      <td>{{item.admin}}</td>
+      <td>{{item.partitionName}}</td>
+      <td>{{item.maxBlock}}</td>
+      <td>{{item.maxUnit}}</td>
+      <td><a href="javascript:;" ui-sref="device-info({id: 1})">查看详情</a></td>
+    </tr>
   </table>
+  <div class="no-data flex-center flex-column" ng-if="!propertyVm.propProperty.list.length">
+    暂无数据
+  </div>
 </div>
